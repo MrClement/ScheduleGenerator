@@ -9,8 +9,10 @@ public class MultiDayWriter {
 
 	private PriorityQueue<CurrentDate> daysOff;
 	private PriorityQueue<CurrentDate> daysOn;
+	private int startYear;
 
 	public MultiDayWriter(String daysOffFile, CurrentDate startDate, CurrentDate endDate) {
+		startYear = startDate.getYear();
 		daysOff = new PriorityQueue<CurrentDate>();
 		Scanner s;
 		try {
@@ -30,15 +32,15 @@ public class MultiDayWriter {
 	private void makeDaysOn(CurrentDate startDate, CurrentDate endDate) {
 		Calendar cal = Calendar.getInstance();
 		cal.clear();
-		cal.set(startDate.getYear(), startDate.getMonth()-1, startDate.getDay(), 8, 8, 8);
+		cal.set(startDate.getYear(), startDate.getMonth() - 1, startDate.getDay(), 8, 8, 8);
 		Calendar endDay = Calendar.getInstance();
 		endDay.clear();
-		endDay.set(endDate.getYear(), endDate.getMonth()-1, endDate.getDay(), 8, 8, 8);
+		endDay.set(endDate.getYear(), endDate.getMonth() - 1, endDate.getDay(), 8, 8, 8);
 		daysOn = new PriorityQueue<CurrentDate>();
 		CurrentDate cd;
 		boolean found = false;
 		while (cal.compareTo(endDay) < 1) {
-			cd = new CurrentDate(cal.get(Calendar.MONTH)+1, cal.get(Calendar.DATE), cal.get(Calendar.YEAR));
+			cd = new CurrentDate(cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DATE), cal.get(Calendar.YEAR));
 			for (CurrentDate c : daysOff) {
 				if (c.getMonth() == cd.getMonth() && c.getYear() == cd.getYear() && c.getDay() == cd.getDay()) {
 					found = true;
@@ -52,17 +54,20 @@ public class MultiDayWriter {
 		}
 
 	}
-	
+
 	public boolean isWeekend(CurrentDate today) {
 		Calendar sat = Calendar.getInstance();
 		sat.clear();
-		sat.set(2012, 0, 7, 8, 8, 8);
+		sat.set(startYear, 0, 1, 8, 8, 8);
+		while (sat.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
+			sat.add(Calendar.DATE, 1);
+		}
 		Calendar sun = Calendar.getInstance();
 		sun.clear();
-		sun.set(2012, 0, 1, 8, 8, 8);
+		sun.set(startYear, 0, sat.get(Calendar.DATE) + 1, 8, 8, 8);
 		Calendar temp = Calendar.getInstance();
 		temp.clear();
-		temp.set(today.getYear(), today.getMonth()-1, today.getDay(), 8, 8, 8);
+		temp.set(today.getYear(), today.getMonth() - 1, today.getDay(), 8, 8, 8);
 		while (sat.compareTo(temp) < 0 || sun.compareTo(temp) < 0) {
 			sat.add(Calendar.DAY_OF_WEEK, 7);
 			sun.add(Calendar.DAY_OF_WEEK, 7);
@@ -81,13 +86,33 @@ public class MultiDayWriter {
 		try {
 			writer = new ICSWriter(filename);
 			writer.writeHeader();
-		for (CurrentDate c : daysOn) {
-			char currentDayType = (char) (dayType + dayAdjust);
+			for (CurrentDate c : daysOn) {
+				char currentDayType = (char) (dayType + dayAdjust);
 				writer.writeDayToFile(currentDayType, c);
-			dayAdjust = (dayAdjust + 1) % 6;
+				dayAdjust = (dayAdjust + 1) % 7;
 
+			}
+			writer.writeFooter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		writer.writeFooter();
+	}
+
+	public void generateICSFile(String filename, int[] periodsToInclude) {
+		ICSWriter writer;
+		char dayType = 'A';
+		int dayAdjust = 0;
+		try {
+			writer = new ICSWriter(filename);
+			writer.writeHeader();
+			for (CurrentDate c : daysOn) {
+				char currentDayType = (char) (dayType + dayAdjust);
+				writer.writeDayToFile(currentDayType, c, periodsToInclude);
+				dayAdjust = (dayAdjust + 1) % 7;
+
+			}
+			writer.writeFooter();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
