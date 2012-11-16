@@ -49,7 +49,7 @@ public class DayBuilder {
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), studentLife(dayType));
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(dayType));
 				today.add(currentPeriod);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), -7);
 				today.add(currentPeriod);
@@ -116,9 +116,9 @@ public class DayBuilder {
 			case 'E':
 				return -2;
 			case 'F':
-				return -2;
-			case 'G':
 				return -4;
+			case 'G':
+				return -5;
 
 			default:
 				return -8;

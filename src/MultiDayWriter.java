@@ -30,21 +30,21 @@ public class MultiDayWriter {
 	private void makeDaysOn(CurrentDate startDate, CurrentDate endDate) {
 		Calendar cal = Calendar.getInstance();
 		cal.clear();
-		cal.set(startDate.getYear(), startDate.getMonth(), startDate.getDay(), 8, 8, 8);
+		cal.set(startDate.getYear(), startDate.getMonth()-1, startDate.getDay(), 8, 8, 8);
 		Calendar endDay = Calendar.getInstance();
 		endDay.clear();
-		endDay.set(endDate.getYear(), endDate.getMonth(), endDate.getDay(), 8, 8, 8);
+		endDay.set(endDate.getYear(), endDate.getMonth()-1, endDate.getDay(), 8, 8, 8);
 		daysOn = new PriorityQueue<CurrentDate>();
 		CurrentDate cd;
 		boolean found = false;
 		while (cal.compareTo(endDay) < 1) {
-			cd = new CurrentDate(cal.get(Calendar.MONTH), cal.get(Calendar.DATE), cal.get(Calendar.YEAR));
+			cd = new CurrentDate(cal.get(Calendar.MONTH)+1, cal.get(Calendar.DATE), cal.get(Calendar.YEAR));
 			for (CurrentDate c : daysOff) {
 				if (c.getMonth() == cd.getMonth() && c.getYear() == cd.getYear() && c.getDay() == cd.getDay()) {
 					found = true;
 				}
 			}
-			if (!found) {
+			if (!found && !isWeekend(cd)) {
 				daysOn.offer(cd);
 			}
 			found = false;
@@ -52,22 +52,45 @@ public class MultiDayWriter {
 		}
 
 	}
+	
+	public boolean isWeekend(CurrentDate today) {
+		Calendar sat = Calendar.getInstance();
+		sat.clear();
+		sat.set(2012, 0, 7, 8, 8, 8);
+		Calendar sun = Calendar.getInstance();
+		sun.clear();
+		sun.set(2012, 0, 1, 8, 8, 8);
+		Calendar temp = Calendar.getInstance();
+		temp.clear();
+		temp.set(today.getYear(), today.getMonth()-1, today.getDay(), 8, 8, 8);
+		while (sat.compareTo(temp) < 0 || sun.compareTo(temp) < 0) {
+			sat.add(Calendar.DAY_OF_WEEK, 7);
+			sun.add(Calendar.DAY_OF_WEEK, 7);
+			if (sat.compareTo(temp) == 0 || sun.compareTo(temp) == 0) {
+				return true;
+			}
+		}
+		return false;
+
+	}
 
 	public void generateICSFile(String filename) {
 		ICSWriter writer;
 		char dayType = 'A';
 		int dayAdjust = 0;
+		try {
+			writer = new ICSWriter(filename);
+			writer.writeHeader();
 		for (CurrentDate c : daysOn) {
 			char currentDayType = (char) (dayType + dayAdjust);
-			try {
-				writer = new ICSWriter(filename);
 				writer.writeDayToFile(currentDayType, c);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			dayAdjust = (dayAdjust + 1) % 6;
 
+		}
+		writer.writeFooter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

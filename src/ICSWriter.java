@@ -54,10 +54,10 @@ public class ICSWriter {
 	public boolean isWednesday(CurrentDate today) {
 		Calendar wed = Calendar.getInstance();
 		wed.clear();
-		wed.set(2012, 1, 4, 8, 8, 8);
+		wed.set(2012, 0, 4, 8, 8, 8);
 		Calendar temp = Calendar.getInstance();
 		temp.clear();
-		temp.set(today.getYear(), today.getMonth(), today.getDay(), 8, 8, 8);
+		temp.set(today.getYear(), today.getMonth()-1, today.getDay(), 8, 8, 8);
 		while (wed.compareTo(temp) < 0) {
 			wed.add(Calendar.DAY_OF_WEEK, 7);
 			if (wed.compareTo(temp) == 0) {
