@@ -16,7 +16,7 @@ public class MultiDayWriter {
 		try {
 			s = new Scanner(new File(daysOffFile));
 			while (s.hasNextLine()) {
-				addToDaysOff(s.nextLine());
+				parseDay(s.nextLine());
 
 			}
 			s.close();
@@ -40,7 +40,7 @@ public class MultiDayWriter {
 		while (cal.compareTo(endDay) < 1) {
 			cd = new CurrentDate(cal.get(Calendar.MONTH), cal.get(Calendar.DATE), cal.get(Calendar.YEAR));
 			for (CurrentDate c : daysOff) {
-				if (c.equals(cd)) {
+				if (c.getMonth() == cd.getMonth() && c.getYear() == cd.getYear() && c.getDay() == cd.getDay()) {
 					found = true;
 				}
 			}
@@ -57,24 +57,21 @@ public class MultiDayWriter {
 		ICSWriter writer;
 		char dayType = 'A';
 		int dayAdjust = 0;
-		try {
-			writer = new ICSWriter(filename);
-			writer.writeHeader();
-			for (CurrentDate c : daysOn) {
-				char currentDayType = (char) (dayType + dayAdjust);
+		for (CurrentDate c : daysOn) {
+			char currentDayType = (char) (dayType + dayAdjust);
+			try {
+				writer = new ICSWriter(filename);
 				writer.writeDayToFile(currentDayType, c);
-
-				dayAdjust = (dayAdjust + 1) % 6;
-
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			writer.writeFooter();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			dayAdjust = (dayAdjust + 1) % 6;
+
 		}
 	}
 
-	private void addToDaysOff(String line) {
+	private void parseDay(String line) {
 		CurrentDate temp = new CurrentDate();
 		String[] brokenLine = line.split(" ");
 		temp.setMonth(Integer.parseInt(brokenLine[0]));
