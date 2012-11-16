@@ -9,6 +9,7 @@ public class DayBuilder {
 	}
 
 	public HashMap<Character, Day> makeNormalDays(int start) {
+		dayMap = new HashMap<Character, Day>();
 		int temp;
 		for (int i = 0; i < 7; i++) {
 			char dayType = 'A';
@@ -65,6 +66,7 @@ public class DayBuilder {
 	}
 
 	public HashMap<Character, Day> makeWednesdays(int start) {
+		dayMap = new HashMap<Character, Day>();
 		int temp;
 		for (int i = 0; i < 7; i++) {
 			char dayType = 'A';

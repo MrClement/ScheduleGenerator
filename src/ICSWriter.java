@@ -1,4 +1,5 @@
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,8 +21,8 @@ public class ICSWriter {
 		DayBuilder db = new DayBuilder();
 		normalDays = db.makeNormalDays(adjustTime(800, new CurrentDate(10, 15, 2012), 1));
 		wednesDays = db.makeWednesdays(adjustTime(900, new CurrentDate(10, 15, 2012), 1));
-		normalDays = db.makeNormalDays(adjustTime(800, new CurrentDate(11, 5, 2012), 1));
-		wednesDays = db.makeWednesdays(adjustTime(900, new CurrentDate(11, 5, 2012), 1));
+		normalDaysDST = db.makeNormalDays(adjustTime(800, new CurrentDate(11, 5, 2012), 1));
+		wednesDaysDST = db.makeWednesdays(adjustTime(900, new CurrentDate(11, 5, 2012), 1));
 		for (Entry<Character, Day> e : wednesDays.entrySet()) {
 			System.out.println(e.getValue().getDayType());
 			System.out.println(e.getValue().toString());
@@ -68,7 +69,45 @@ public class ICSWriter {
 	}
 
 	public void writeHeader() {
+		File old = new File(filename);
+		old.delete();
+		try {
+			out = new BufferedWriter(new FileWriter(filename, true));
 
+			out.write("BEGIN:VCALENDAR");
+			out.newLine();
+			out.write("PRODID:-//Google Inc//Google Calendar 70.9054//EN");
+			out.newLine();
+			out.write("VERSION:2.0");
+			out.newLine();
+			out.write("CALSCALE:GREGORIAN");
+			out.newLine();
+			out.write("METHOD:PUBLISH");
+			out.newLine();
+			out.write("X-WR-CALNAME:All Periods");
+			out.newLine();
+			out.write("X-WR-TIMEZONE:America/Denver");
+			out.newLine();
+			out.write("X-WR-CALDESC:");
+			out.newLine();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void writeFooter() {
+		try {
+			out = new BufferedWriter(new FileWriter(filename, true));
+			out.write("END:VCALENDAR");
+			out.newLine();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void writeDayToFile(char dayType, CurrentDate today) throws IOException {
@@ -96,7 +135,7 @@ public class ICSWriter {
 					+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
 					+ "T"
 					+ (periodToPrint.getStartTime() > 1000 ? periodToPrint.getStartTime() : "0"
-							+ periodToPrint.getStartTime()) + "Z");
+							+ periodToPrint.getStartTime()) + "00Z");
 			out.newLine();
 			out.write("DTEND:"
 					+ today.getYear()
@@ -104,7 +143,7 @@ public class ICSWriter {
 					+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
 					+ "T"
 					+ (periodToPrint.getEndTime() > 1000 ? periodToPrint.getEndTime() : "0"
-							+ periodToPrint.getEndTime()) + "Z");
+							+ periodToPrint.getEndTime()) + "00Z");
 			out.newLine();
 			out.write("DTSTAMP:20120820T172628Z");
 			out.newLine();
