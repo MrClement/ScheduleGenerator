@@ -2,10 +2,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Scanner;
-
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 public class MultiDayWriter {
 
@@ -86,7 +85,7 @@ public class MultiDayWriter {
 		char dayType = 'A';
 		int dayAdjust = 0;
 		try {
-			writer = new ICSWriter(filename);
+			writer = new ICSWriter(filename, true);
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
@@ -101,16 +100,20 @@ public class MultiDayWriter {
 		}
 	}
 
-	public void generateICSFile(String filename, int[] periodsToInclude, String[] periodNames) {
+	public void generateICSFile(String filename,
+			int[] periodsToInclude,
+			String[] periodNames,
+			boolean schoolType,
+			HashMap<Character, Integer> singleBox) {
 		ICSWriter writer;
 		char dayType = 'A';
 		int dayAdjust = 0;
 		try {
-			writer = new ICSWriter(filename);
+			writer = new ICSWriter(filename, schoolType);
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
-				writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames);
+				writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}

@@ -1,7 +1,6 @@
 import java.util.HashMap;
 
-
-public class DayBuilder78 {
+public class DayBuilder78 extends DayBuilder {
 
 	private HashMap<Character, Day> dayMap;
 
@@ -12,56 +11,183 @@ public class DayBuilder78 {
 	public HashMap<Character, Day> makeNormalDays(int start) {
 		dayMap = new HashMap<Character, Day>();
 		int temp;
-		for (int i = 0; i < 7; i++) {
-			char dayType = 'A';
-			dayType += i;
-			Day today = new Day();
-			if (dayType != 'B' && dayType != 'G') {
-				Period currentPeriod = new Period(start, temp = makeIntTime(start, 60), (dayType % 65) % 7 + 1);
-				today.add(currentPeriod);
-				today.setDayType(dayType);
-				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 2) % 7 + 1);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), -1);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(dayType));
-				today.add(currentPeriod);
-				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), -7);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 5) % 7 + 1);
-				today.add(currentPeriod);
-				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 6) % 7 + 1);
-				today.add(currentPeriod);
-				dayMap.put(dayType, today);
-			} else {
-				Period currentPeriod = new Period(start, temp = makeIntTime(start, 60), (dayType % 65) % 7 + 1);
-				today.add(currentPeriod);
-				today.setDayType(dayType);
-				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 2) % 7 + 1);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), -1);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
-				today.add(currentPeriod);
-				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(dayType));
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), -7);
-				today.add(currentPeriod);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 5) % 7 + 1);
-				today.add(currentPeriod);
-				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 6) % 7 + 1);
-				today.add(currentPeriod);
-				dayMap.put(dayType, today);
-			}
-		}
+		int periodLength = 60;
+		Period currentPeriod;
+		// A Day
+		char dayType = 'A';
+		Day today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 1);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -4);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
+		// B day
+		dayType = 'B';
+		today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 2);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -6);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
+		// C Day
+		dayType = 'C';
+		today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 3);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
+		// D Day
+		dayType = 'D';
+		today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 4);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -2);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -9);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
+		// E Day
+		dayType = 'E';
+		today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 5);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -5);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
+		// F Day
+		dayType = 'F';
+		today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 6);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -9);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
+		// G Day
+		dayType = 'G';
+		today = new Day();
+		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), -10);
+		today.add(currentPeriod);
+		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		today.add(currentPeriod);
+		dayMap.put(dayType, today);
+
 		return dayMap;
 
 	}
@@ -69,26 +195,31 @@ public class DayBuilder78 {
 	public HashMap<Character, Day> makeWednesdays(int start) {
 		dayMap = new HashMap<Character, Day>();
 		int temp;
+		int periodLength = 50;
 		for (int i = 0; i < 7; i++) {
 			char dayType = 'A';
 			Day today = new Day();
 			dayType += i;
-			Period currentPeriod = new Period(start, temp = makeIntTime(start, 55), (dayType % 65) % 7 + 1);
+			Period currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), (dayType % 65) % 7 + 1);
 			today.add(currentPeriod);
 			today.setDayType(dayType);
-			temp = makeIntTime(temp, 5);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 2) % 7 + 1);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
 			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), -1);
-			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
-			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), -7);
-			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 5) % 7 + 1);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), (dayType % 65 + 2) % 7 + 1);
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 6) % 7 + 1);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), (dayType % 65 + 3) % 7 + 1);
+			today.add(currentPeriod);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
+			today.add(currentPeriod);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), (dayType % 65 + 6) % 7 + 1);
+			today.add(currentPeriod);
+			temp = makeIntTime(temp, 5);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), (dayType % 65 + 5) % 7 + 1);
+			today.add(currentPeriod);
+			temp = makeIntTime(temp, 5);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), dayType == 'D'
+					|| dayType == 'F' ? -8 : -9);
 			today.add(currentPeriod);
 			dayMap.put(dayType, today);
 		}
@@ -102,27 +233,5 @@ public class DayBuilder78 {
 		time += ((temp + add) / 60) * 100;
 		time += ((temp + add) % 60);
 		return time;
-	}
-
-	private int studentLife(char d) {
-		switch (d) {
-			case 'A':
-				return -2;
-			case 'B':
-				return -5;
-			case 'C':
-				return -3;
-			case 'D':
-				return -4;
-			case 'E':
-				return -2;
-			case 'F':
-				return -4;
-			case 'G':
-				return -5;
-
-			default:
-				return -8;
-		}
 	}
 }

@@ -21,7 +21,7 @@ public class ICSWriter {
 	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2013);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 5, 2012);
 
-	public ICSWriter() {
+	public ICSWriter(boolean schoolType) {
 
 		DayBuilder db = new DayBuilder();
 		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
@@ -36,8 +36,8 @@ public class ICSWriter {
 
 	}
 
-	public ICSWriter(String filename) throws IOException {
-		DayBuilder db = new DayBuilder();
+	public ICSWriter(String filename, boolean schoolType) throws IOException {
+		DayBuilder db = schoolType ? new DayBuilder() : new DayBuilder78();
 		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
 		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
 		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
@@ -145,7 +145,7 @@ public class ICSWriter {
 		}
 		return s;
 	}
-	
+
 	private String periodName(int periodNumber, String[] periodNames) {
 		String s = "";
 		switch (periodNumber) {
@@ -167,8 +167,20 @@ public class ICSWriter {
 			case -7:
 				s = "Lunch";
 				break;
+			case -8:
+				s = "Sports";
+				break;
+			case -6:
+				s = "Study Hall";
+				break;
+			case -10:
+				s = "Class Meetings/Study Hall";
+				break;
+			case -9:
+				s = "Electives";
+				break;
 			default:
-				s = periodNames[periodNumber-1];
+				s = periodNames[periodNumber - 1];
 				break;
 		}
 		return s;
@@ -238,7 +250,11 @@ public class ICSWriter {
 
 	}
 
-	public void writeDayToFile(char dayType, CurrentDate today, int[] periodsToInclude, String[] periodNames) throws IOException {
+	public void writeDayToFile(char dayType,
+			CurrentDate today,
+			int[] periodsToInclude,
+			String[] periodNames,
+			HashMap<Character, Integer> singleBox) throws IOException {
 		try {
 			out = new BufferedWriter(new FileWriter(filename, true));
 		} catch (FileNotFoundException e) {
@@ -254,50 +270,51 @@ public class ICSWriter {
 		Day dayToPrint = currentDayMap.get(dayType);
 		for (Period p : dayToPrint.getD()) {
 			if (periodShouldBeIncluded(p.getNumber(), periodsToInclude)) {
-
-				Period periodToPrint = p;
-				out.write("BEGIN:VEVENT");
-				out.newLine();
-				out.write("DTSTART:"
-						+ today.getYear()
-						+ (today.getMonth() > 9 ? today.getMonth() : ("0" + today.getMonth()))
-						+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
-						+ "T"
-						+ (periodToPrint.getStartTime() > 1000 ? periodToPrint.getStartTime() : "0"
-								+ periodToPrint.getStartTime()) + "00Z");
-				out.newLine();
-				out.write("DTEND:"
-						+ today.getYear()
-						+ (today.getMonth() > 9 ? today.getMonth() : ("0" + today.getMonth()))
-						+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
-						+ "T"
-						+ (periodToPrint.getEndTime() > 1000 ? periodToPrint.getEndTime() : "0"
-								+ periodToPrint.getEndTime()) + "00Z");
-				out.newLine();
-				out.write("DTSTAMP:20120820T172628Z");
-				out.newLine();
-				out.write("UID:");
-				out.newLine();
-				out.write("CLASS:PUBLIC");
-				out.newLine();
-				out.write("CREATED:19000101T120000Z");
-				out.newLine();
-				out.write("DESCRIPTION:");
-				out.newLine();
-				out.write("LAST-MODIFIED:20120820T172422Z");
-				out.newLine();
-				out.write("LOCATION:");
-				out.newLine();
-				out.write("SEQUENCE:0");
-				out.newLine();
-				out.write("STATUS:CONFIRMED");
-				out.newLine();
-				out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames));
-				out.newLine();
-				out.write("TRANSP:OPAQUE");
-				out.newLine();
-				out.write("END:VEVENT");
-				out.newLine();
+				if (singleBox.size() < 1 || (singleBox.containsKey(dayType) && p.getNumber() == singleBox.get(dayType))) {
+					Period periodToPrint = p;
+					out.write("BEGIN:VEVENT");
+					out.newLine();
+					out.write("DTSTART:"
+							+ today.getYear()
+							+ (today.getMonth() > 9 ? today.getMonth() : ("0" + today.getMonth()))
+							+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
+							+ "T"
+							+ (periodToPrint.getStartTime() > 1000 ? periodToPrint.getStartTime() : "0"
+									+ periodToPrint.getStartTime()) + "00Z");
+					out.newLine();
+					out.write("DTEND:"
+							+ today.getYear()
+							+ (today.getMonth() > 9 ? today.getMonth() : ("0" + today.getMonth()))
+							+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
+							+ "T"
+							+ (periodToPrint.getEndTime() > 1000 ? periodToPrint.getEndTime() : "0"
+									+ periodToPrint.getEndTime()) + "00Z");
+					out.newLine();
+					out.write("DTSTAMP:20120820T172628Z");
+					out.newLine();
+					out.write("UID:");
+					out.newLine();
+					out.write("CLASS:PUBLIC");
+					out.newLine();
+					out.write("CREATED:19000101T120000Z");
+					out.newLine();
+					out.write("DESCRIPTION:");
+					out.newLine();
+					out.write("LAST-MODIFIED:20120820T172422Z");
+					out.newLine();
+					out.write("LOCATION:");
+					out.newLine();
+					out.write("SEQUENCE:0");
+					out.newLine();
+					out.write("STATUS:CONFIRMED");
+					out.newLine();
+					out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames));
+					out.newLine();
+					out.write("TRANSP:OPAQUE");
+					out.newLine();
+					out.write("END:VEVENT");
+					out.newLine();
+				}
 			}
 		}
 		out.close();
