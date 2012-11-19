@@ -145,6 +145,34 @@ public class ICSWriter {
 		}
 		return s;
 	}
+	
+	private String periodName(int periodNumber, String[] periodNames) {
+		String s = "";
+		switch (periodNumber) {
+			case -1:
+				s = "Break";
+				break;
+			case -2:
+				s = "Assembly";
+				break;
+			case -3:
+				s = "Class Meeting";
+				break;
+			case -4:
+				s = "Advisory";
+				break;
+			case -5:
+				s = "Clubs";
+				break;
+			case -7:
+				s = "Lunch";
+				break;
+			default:
+				s = periodNames[periodNumber-1];
+				break;
+		}
+		return s;
+	}
 
 	public void writeDayToFile(char dayType, CurrentDate today) throws IOException {
 		try {
@@ -210,7 +238,7 @@ public class ICSWriter {
 
 	}
 
-	public void writeDayToFile(char dayType, CurrentDate today, int[] periodsToInclude) throws IOException {
+	public void writeDayToFile(char dayType, CurrentDate today, int[] periodsToInclude, String[] periodNames) throws IOException {
 		try {
 			out = new BufferedWriter(new FileWriter(filename, true));
 		} catch (FileNotFoundException e) {
@@ -264,7 +292,7 @@ public class ICSWriter {
 				out.newLine();
 				out.write("STATUS:CONFIRMED");
 				out.newLine();
-				out.write("SUMMARY:" + periodName(periodToPrint.getNumber()));
+				out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames));
 				out.newLine();
 				out.write("TRANSP:OPAQUE");
 				out.newLine();

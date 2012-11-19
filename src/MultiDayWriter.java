@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 public class MultiDayWriter {
 
 	private PriorityQueue<CurrentDate> daysOff;
@@ -99,7 +101,7 @@ public class MultiDayWriter {
 		}
 	}
 
-	public void generateICSFile(String filename, int[] periodsToInclude) {
+	public void generateICSFile(String filename, int[] periodsToInclude, String[] periodNames) {
 		ICSWriter writer;
 		char dayType = 'A';
 		int dayAdjust = 0;
@@ -108,7 +110,7 @@ public class MultiDayWriter {
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
-				writer.writeDayToFile(currentDayType, c, periodsToInclude);
+				writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}
