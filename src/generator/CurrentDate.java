@@ -1,3 +1,4 @@
+package generator;
 public class CurrentDate implements Comparable<CurrentDate> {
 
 	private int year;

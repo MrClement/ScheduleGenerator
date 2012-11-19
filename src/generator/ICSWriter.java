@@ -1,3 +1,4 @@
+package generator;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -254,7 +255,8 @@ public class ICSWriter {
 			CurrentDate today,
 			int[] periodsToInclude,
 			String[] periodNames,
-			HashMap<Character, Integer> singleBox) throws IOException {
+			HashMap<Character, Integer> singleBox,
+			boolean includeBreaksAndLunch) throws IOException {
 		try {
 			out = new BufferedWriter(new FileWriter(filename, true));
 		} catch (FileNotFoundException e) {
@@ -269,7 +271,7 @@ public class ICSWriter {
 		}
 		Day dayToPrint = currentDayMap.get(dayType);
 		for (Period p : dayToPrint.getD()) {
-			if (periodShouldBeIncluded(p.getNumber(), periodsToInclude)) {
+			if (periodShouldBeIncluded(p.getNumber(), periodsToInclude, includeBreaksAndLunch)) {
 				if (singleBox.size() < 1 || (singleBox.containsKey(dayType) && p.getNumber() == singleBox.get(dayType))) {
 					Period periodToPrint = p;
 					out.write("BEGIN:VEVENT");
@@ -321,12 +323,12 @@ public class ICSWriter {
 
 	}
 
-	private boolean periodShouldBeIncluded(int periodNumber, int[] periodsToInclude) {
+	private boolean periodShouldBeIncluded(int periodNumber, int[] periodsToInclude, boolean includeBreaksAndLunch) {
 		boolean found = false;
 		for (int i = 0; i < periodsToInclude.length; i++) {
 			if (found = periodsToInclude[i] == periodNumber)
 				break;
 		}
-		return periodNumber < 0 || found;
+		return (periodNumber < 0 && includeBreaksAndLunch) || found;
 	}
 }

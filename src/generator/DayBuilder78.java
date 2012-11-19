@@ -1,3 +1,4 @@
+package generator;
 import java.util.HashMap;
 
 public class DayBuilder78 extends DayBuilder {

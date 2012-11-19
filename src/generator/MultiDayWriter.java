@@ -1,3 +1,4 @@
+package generator;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -104,7 +105,8 @@ public class MultiDayWriter {
 			int[] periodsToInclude,
 			String[] periodNames,
 			boolean schoolType,
-			HashMap<Character, Integer> singleBox) {
+			HashMap<Character, Integer> singleBox,
+			boolean includeBreaksAndLunch) {
 		ICSWriter writer;
 		char dayType = 'A';
 		int dayAdjust = 0;
@@ -113,7 +115,8 @@ public class MultiDayWriter {
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
-				writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox);
+				writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox,
+						includeBreaksAndLunch);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}

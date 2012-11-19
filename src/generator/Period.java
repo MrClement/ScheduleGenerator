@@ -1,3 +1,4 @@
+package generator;
 public class Period implements Comparable<Period> {
 
 	private int number;

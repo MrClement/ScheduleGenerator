@@ -1,3 +1,4 @@
+package generator;
 import java.util.PriorityQueue;
 
 public class Day {
