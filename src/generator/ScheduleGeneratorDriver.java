@@ -1,9 +1,10 @@
 package generator;
+
 import java.util.HashMap;
 
 public class ScheduleGeneratorDriver {
 
-	public static void main(String[] args) {
+	public ScheduleGeneratorDriver() {
 		CurrentDate startDate = new CurrentDate(8, 21, 2012);
 		CurrentDate endDate = new CurrentDate(5, 24, 2013);
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate);
@@ -25,6 +26,12 @@ public class ScheduleGeneratorDriver {
 		// specifies the name of the output file
 		writer.generateICSFile("test.txt", periodsToInclude, periodNames, school, singleBox, includeBreaksAndLunch);
 
+	}
+
+	public ScheduleGeneratorDriver(ScheduleDataStorage data) {
+		MultiDayWriter writer = new MultiDayWriter("excluded.txt", data.getStartDate(), data.getEndDate());
+		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.isSchool(),
+				data.getSingleBox(), data.isIncludeBreaksAndLunch());
 	}
 
 }
