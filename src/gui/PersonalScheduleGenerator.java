@@ -101,7 +101,7 @@ public class PersonalScheduleGenerator {
 		}
 
 		frame = new JFrame();
-		frame.setTitle("Kent Denver Personal Schedule Generator 2012-2013");
+		frame.setTitle("Kent Denver Personal Schedule Generator 2012-2013 (BETA)");
 		frame.setResizable(false);
 		frame.setBounds(50, 50, 500, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
