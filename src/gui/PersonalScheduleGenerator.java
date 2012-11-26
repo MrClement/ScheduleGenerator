@@ -72,6 +72,8 @@ public class PersonalScheduleGenerator {
 	private JCheckBox chckbxPeriod_2;
 	private JCheckBox chckbxPeriod_1;
 
+	JCheckBox chckbxIncludeBreaksLunch;
+
 	/**
 	 * Launch the application.
 	 */
@@ -299,16 +301,16 @@ public class PersonalScheduleGenerator {
 				data.setEndDate(new CurrentDate(Integer.parseInt(months[endMonthsList.getSelectedIndex()]), Integer
 						.parseInt(days[endDaysList.getSelectedIndex()]), Integer.parseInt(years[endYearsList
 						.getSelectedIndex()])));
-				data.setIncludeBreaksAndLunch(false);
-				if (chckbxPeriod_1.isSelected()) {
+				data.setIncludeBreaksAndLunch(chckbxIncludeBreaksLunch.isSelected());
+				if (chckbxPeriod.isSelected()) {
 					data.getPeriodsToInclude()[0] = 1;
 					data.getPeriodNames()[0] = txtPeriod1.getText();
 				}
-				if (chckbxPeriod_2.isSelected()) {
+				if (chckbxPeriod_6.isSelected()) {
 					data.getPeriodsToInclude()[1] = 2;
 					data.getPeriodNames()[1] = txtPeriod2.getText();
 				}
-				if (chckbxPeriod_3.isSelected()) {
+				if (chckbxPeriod_5.isSelected()) {
 					data.getPeriodsToInclude()[2] = 3;
 					data.getPeriodNames()[2] = txtPeriod3.getText();
 				}
@@ -316,15 +318,15 @@ public class PersonalScheduleGenerator {
 					data.getPeriodsToInclude()[3] = 4;
 					data.getPeriodNames()[3] = txtPeriod4.getText();
 				}
-				if (chckbxPeriod_5.isSelected()) {
+				if (chckbxPeriod_3.isSelected()) {
 					data.getPeriodsToInclude()[4] = 5;
 					data.getPeriodNames()[4] = txtPeriod5.getText();
 				}
-				if (chckbxPeriod_6.isSelected()) {
+				if (chckbxPeriod_2.isSelected()) {
 					data.getPeriodsToInclude()[5] = 6;
 					data.getPeriodNames()[5] = txtPeriod6.getText();
 				}
-				if (chckbxPeriod.isSelected()) {
+				if (chckbxPeriod_1.isSelected()) {
 					data.getPeriodsToInclude()[6] = 7;
 					data.getPeriodNames()[6] = txtPeriod7.getText();
 				}
@@ -357,7 +359,7 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(txtMycaltxt);
 		txtMycaltxt.setColumns(10);
 
-		JCheckBox chckbxIncludeBreaksLunch = new JCheckBox("Include breaks, lunch and student life");
+		chckbxIncludeBreaksLunch = new JCheckBox("Include breaks, lunch and student life");
 		chckbxIncludeBreaksLunch.setBounds(113, 567, 352, 23);
 		frame.getContentPane().add(chckbxIncludeBreaksLunch);
 
