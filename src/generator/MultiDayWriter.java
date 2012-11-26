@@ -1,6 +1,5 @@
 package generator;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -17,17 +16,12 @@ public class MultiDayWriter {
 		startYear = startDate.getYear();
 		daysOff = new PriorityQueue<CurrentDate>();
 		Scanner s;
-		try {
-			s = new Scanner(new File(daysOffFile));
-			while (s.hasNextLine()) {
-				parseDay(s.nextLine());
+		s = new Scanner(MultiDayWriter.class.getClassLoader().getResourceAsStream(daysOffFile));
+		while (s.hasNextLine()) {
+			parseDay(s.nextLine());
 
-			}
-			s.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
+		s.close();
 		makeDaysOn(startDate, endDate);
 	}
 

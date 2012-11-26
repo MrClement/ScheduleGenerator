@@ -105,7 +105,7 @@ public class PersonalScheduleGenerator {
 		frame = new JFrame();
 		frame.setTitle("Kent Denver Personal Schedule Generator 2012-2013 (BETA)");
 		frame.setResizable(false);
-		frame.setBounds(50, 50, 500, 700);
+		frame.setBounds(50, 50, 500, 710);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		initializePeriodMode();
@@ -337,7 +337,7 @@ public class PersonalScheduleGenerator {
 
 			}
 		});
-		btnSubmit.setBounds(96, 625, 117, 29);
+		btnSubmit.setBounds(96, 630, 117, 29);
 		frame.getContentPane().add(btnSubmit);
 
 		JButton btnQuit = new JButton("Quit");
@@ -346,7 +346,7 @@ public class PersonalScheduleGenerator {
 				System.exit(0);
 			}
 		});
-		btnQuit.setBounds(276, 625, 117, 29);
+		btnQuit.setBounds(276, 630, 117, 29);
 		frame.getContentPane().add(btnQuit);
 
 		JLabel lblOutputFilename = new JLabel("Output filename:");
@@ -593,7 +593,7 @@ public class PersonalScheduleGenerator {
 			}
 
 		});
-		btnSubmit.setBounds(96, 625, 117, 29);
+		btnSubmit.setBounds(96, 630, 117, 29);
 		frame.getContentPane().add(btnSubmit);
 
 		JButton btnQuit = new JButton("Quit");
@@ -602,7 +602,7 @@ public class PersonalScheduleGenerator {
 				System.exit(0);
 			}
 		});
-		btnQuit.setBounds(276, 625, 117, 29);
+		btnQuit.setBounds(276, 630, 117, 29);
 		frame.getContentPane().add(btnQuit);
 
 	}
