@@ -148,9 +148,9 @@ public class PersonalScheduleGenerator {
 	protected void initializePeriodMode() {
 
 		JLabel lblNewLabel = new JLabel(
-				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file to your calendar.</html>");
+				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel.setBounds(31, 29, 438, 67);
+		lblNewLabel.setBounds(25, 29, 445, 67);
 		frame.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel(
