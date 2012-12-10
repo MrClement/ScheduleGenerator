@@ -10,9 +10,12 @@ public class MultiDayWriter {
 
 	private PriorityQueue<CurrentDate> daysOff;
 	private PriorityQueue<CurrentDate> daysOn;
+	private CurrentDate earlyLimit;
+	private CurrentDate lateLimit;
 	private int startYear;
 
-	public MultiDayWriter(String daysOffFile, CurrentDate startDate, CurrentDate endDate) {
+	public MultiDayWriter(String daysOffFile, CurrentDate startDate, CurrentDate endDate, CurrentDate earlyLimit,
+			CurrentDate lateLimit) {
 		startYear = startDate.getYear();
 		daysOff = new PriorityQueue<CurrentDate>();
 		Scanner s;
@@ -23,6 +26,8 @@ public class MultiDayWriter {
 		}
 		s.close();
 		makeDaysOn(startDate, endDate);
+		this.earlyLimit = earlyLimit;
+		this.lateLimit = lateLimit;
 	}
 
 	private void makeDaysOn(CurrentDate startDate, CurrentDate endDate) {
@@ -84,7 +89,8 @@ public class MultiDayWriter {
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
-				writer.writeDayToFile(currentDayType, c);
+				if (c.isAfterOrEqual(earlyLimit) && (c.isBefore(lateLimit) || c.equals(lateLimit)))
+					writer.writeDayToFile(currentDayType, c);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}
@@ -109,8 +115,9 @@ public class MultiDayWriter {
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
-				writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox,
-						includeBreaksAndLunch);
+				if (c.isAfterOrEqual(earlyLimit) && (c.isBefore(lateLimit) || c.equals(lateLimit)))
+					writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox,
+							includeBreaksAndLunch);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}
