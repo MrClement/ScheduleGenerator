@@ -138,9 +138,22 @@ public class PersonalScheduleGenerator {
 			}
 
 		});
+		JMenuItem midElectiveMode = new JMenuItem("Middle School Elective Mode");
+		midElectiveMode.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				initializeMidElevtiveMode();
+				frame.getContentPane().validate();
+				frame.getContentPane().repaint();
+			}
+
+		});
 
 		mode.add(periodMode);
 		mode.add(singleBoxMode);
+		mode.add(midElectiveMode);
 
 		menuBar.add(mode);
 	}
@@ -604,6 +617,96 @@ public class PersonalScheduleGenerator {
 		});
 		btnQuit.setBounds(276, 630, 117, 29);
 		frame.getContentPane().add(btnQuit);
+
+	}
+
+	private void initializeMidElevtiveMode() {
+
+		JLabel lblNewLabel = new JLabel(
+				"<html>Welcome to the Kent Denver Personal Schedule Generator! This mode allows you to generate a file that just holds the meeting times of the middle school elective.");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblNewLabel.setBounds(27, 32, 438, 102);
+		frame.getContentPane().add(lblNewLabel);
+
+		JLabel lblStartDate = new JLabel("Start Date:");
+		lblStartDate.setBounds(60, 225, 99, 16);
+		frame.getContentPane().add(lblStartDate);
+
+		startMonthsList = new JComboBox<Object>(months);
+		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setBounds(162, 221, 70, 27);
+		frame.getContentPane().add(startMonthsList);
+
+		startDaysList = new JComboBox<Object>(days);
+		startDaysList.setSelectedIndex(20);
+		startDaysList.setBounds(235, 221, 75, 27);
+		frame.getContentPane().add(startDaysList);
+
+		startYearsList = new JComboBox<Object>(years);
+		startYearsList.setSelectedIndex(0);
+		startYearsList.setBounds(313, 221, 99, 27);
+		frame.getContentPane().add(startYearsList);
+
+		JLabel lblEndDate = new JLabel("End Date:");
+		lblEndDate.setBounds(60, 338, 99, 16);
+		frame.getContentPane().add(lblEndDate);
+
+		endMonthsList = new JComboBox<Object>(months);
+		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setBounds(162, 334, 70, 27);
+		frame.getContentPane().add(endMonthsList);
+
+		endDaysList = new JComboBox<Object>(days);
+		endDaysList.setSelectedIndex(23);
+		endDaysList.setBounds(235, 334, 75, 27);
+		frame.getContentPane().add(endDaysList);
+
+		endYearsList = new JComboBox<Object>(years);
+		endYearsList.setSelectedIndex(1);
+		endYearsList.setBounds(313, 334, 99, 27);
+		frame.getContentPane().add(endYearsList);
+
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ScheduleDataStorage data = new ScheduleDataStorage();
+				data.setStartDate(new CurrentDate(Integer.parseInt(months[startMonthsList.getSelectedIndex()]), Integer
+						.parseInt(days[startDaysList.getSelectedIndex()]), Integer.parseInt(years[startYearsList
+						.getSelectedIndex()])));
+				data.setEndDate(new CurrentDate(Integer.parseInt(months[endMonthsList.getSelectedIndex()]), Integer
+						.parseInt(days[endDaysList.getSelectedIndex()]), Integer.parseInt(years[endYearsList
+						.getSelectedIndex()])));
+				data.setFilename(txtMycaltxt.getText());
+				data.setMidSchoolElective(true);
+				data.setSchool(false);
+				@SuppressWarnings("unused")
+				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+			}
+
+		});
+		btnSubmit.setBounds(100, 542, 117, 29);
+		frame.getContentPane().add(btnSubmit);
+
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuit.setBounds(280, 542, 117, 29);
+		frame.getContentPane().add(btnQuit);
+
+		JLabel lblOutputFilename = new JLabel("Output filename:");
+		lblOutputFilename.setBounds(117, 443, 141, 16);
+		frame.getContentPane().add(lblOutputFilename);
+
+		txtMycaltxt = new JTextField();
+		txtMycaltxt.setText("MyCal.txt");
+		txtMycaltxt.setBounds(247, 437, 134, 28);
+		frame.getContentPane().add(txtMycaltxt);
+		txtMycaltxt.setColumns(10);
 
 	}
 }

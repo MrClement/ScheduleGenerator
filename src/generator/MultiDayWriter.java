@@ -106,7 +106,8 @@ public class MultiDayWriter {
 			String[] periodNames,
 			boolean schoolType,
 			HashMap<Character, Integer> singleBox,
-			boolean includeBreaksAndLunch) {
+			boolean includeBreaksAndLunch,
+			boolean midSchoolElective) {
 		ICSWriter writer;
 		char dayType = 'A';
 		int dayAdjust = 0;
@@ -117,7 +118,7 @@ public class MultiDayWriter {
 				char currentDayType = (char) (dayType + dayAdjust);
 				if (c.isAfterOrEqual(earlyLimit) && (c.isBefore(lateLimit) || c.equals(lateLimit)))
 					writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox,
-							includeBreaksAndLunch);
+							includeBreaksAndLunch, midSchoolElective);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}

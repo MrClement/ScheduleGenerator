@@ -12,11 +12,13 @@ public class ScheduleDataStorage {
 	private int[] periodsToInclude;
 	private String[] periodNames;
 	private String filename;
+	private boolean midSchoolElective;
 
 	public ScheduleDataStorage() {
 		startDate = new CurrentDate();
 		endDate = new CurrentDate();
 		school = true;
+		midSchoolElective = false;
 		includeBreaksAndLunch = false;
 		singleBox = new HashMap<Character, Integer>();
 		periodsToInclude = new int[8];
@@ -87,6 +89,14 @@ public class ScheduleDataStorage {
 
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+
+	public boolean isMidSchoolElective() {
+		return midSchoolElective;
+	}
+
+	public void setMidSchoolElective(boolean midSchoolElective) {
+		this.midSchoolElective = midSchoolElective;
 	}
 
 }
