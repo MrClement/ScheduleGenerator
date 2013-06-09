@@ -12,7 +12,6 @@ public class CalendarTester {
 			System.out.println(test.isWednesday(new CurrentDate(1, 2, 2013)));
 			test.writeDayToFile('A', new CurrentDate(10, 11, 2102));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
