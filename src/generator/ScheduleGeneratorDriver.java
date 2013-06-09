@@ -24,7 +24,8 @@ public class ScheduleGeneratorDriver {
 		String[] periodNames = { "Period 1", "Period 2", "Technology Department Meeting", "Period 4", "Period 5",
 				"Period 6", "Middle School Robotics" };
 		// specifies the name of the output file
-		writer.generateICSFile("test.txt", periodsToInclude, periodNames, school, singleBox, includeBreaksAndLunch);
+		writer.generateICSFile("test.txt", periodsToInclude, periodNames, school, singleBox, includeBreaksAndLunch,
+				false);
 
 	}
 
@@ -34,7 +35,7 @@ public class ScheduleGeneratorDriver {
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, data.getStartDate(),
 				data.getEndDate());
 		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.isSchool(),
-				data.getSingleBox(), data.isIncludeBreaksAndLunch());
+				data.getSingleBox(), data.isIncludeBreaksAndLunch(), data.isMidSchoolElective());
 	}
 
 }
