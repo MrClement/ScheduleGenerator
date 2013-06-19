@@ -22,6 +22,7 @@ public class ICSWriter {
 	private CurrentDate dstStartDate = new CurrentDate(11, 4, 2012);
 	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2013);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 5, 2012);
+	//private enum SchoolType {SIX, SEVENEIGHT, HIGH};
 
 	public ICSWriter(boolean schoolType) {
 
