@@ -17,21 +17,21 @@ public class ICSWriter {
 	private HashMap<Character, Day> wednesDaysDST;
 	private BufferedWriter out;
 	private String filename;
-	private int startYear = 2012;
-	private CurrentDate schoolStartDate = new CurrentDate(10, 15, 2012);
-	private CurrentDate dstStartDate = new CurrentDate(11, 4, 2012);
-	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2013);
-	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 5, 2012);
+	private int startYear = 2013;
+	private CurrentDate schoolStartDate = new CurrentDate(8, 19, 2013);
+	private CurrentDate dstStartDate = new CurrentDate(11, 3, 2013);
+	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2014);
+	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 4, 2013);
 
 	// private enum SchoolType {SIX, SEVENEIGHT, HIGH};
 
 	public ICSWriter(boolean schoolType) {
 
 		DayBuilder db = new DayBuilder();
-		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1), schoolStartDate);
-		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1), schoolStartDate);
-		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
-		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
+		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
+		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
+		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
+		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1));
 		for (Entry<Character, Day> e : wednesDays.entrySet()) {
 			System.out.println(e.getValue().getDayType());
 			System.out.println(e.getValue().toString());
@@ -42,10 +42,10 @@ public class ICSWriter {
 
 	public ICSWriter(String filename, boolean schoolType) throws IOException {
 		DayBuilder db = schoolType ? new DayBuilder() : new DayBuilder78();
-		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1), schoolStartDate);
-		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1), schoolStartDate);
-		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
-		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
+		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
+		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
+		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
+		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1));
 		this.filename = filename;
 	}
 
@@ -122,35 +122,7 @@ public class ICSWriter {
 		}
 	}
 
-	private String periodName(int periodNumber) {
-		String s = "";
-		switch (periodNumber) {
-			case -1:
-				s = "Break";
-				break;
-			case -2:
-				s = "Assembly";
-				break;
-			case -3:
-				s = "Class Meeting";
-				break;
-			case -4:
-				s = "Advisory";
-				break;
-			case -5:
-				s = "Clubs";
-				break;
-			case -7:
-				s = "Lunch";
-				break;
-			default:
-				s = "Period " + periodNumber;
-				break;
-		}
-		return s;
-	}
-
-	private String periodName(int periodNumber, String[] periodNames) {
+	private String periodName(int periodNumber, String[] periodNames, CurrentDate today) {
 		String s = "";
 		switch (periodNumber) {
 			case -1:
@@ -180,75 +152,14 @@ public class ICSWriter {
 			case -9:
 				s = "Electives";
 				break;
+			case -42:
+				s = communityTime(today);
+				break;
 			default:
 				s = periodNames[periodNumber - 1];
 				break;
 		}
 		return s;
-	}
-
-	public void writeDayToFile(char dayType, CurrentDate today) throws IOException {
-		try {
-			out = new BufferedWriter(new FileWriter(filename, true));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		HashMap<Character, Day> currentDayMap;
-		if (today.isBefore(dstStartDate) || today.isAfterOrEqual(dstEndDate)) {
-			currentDayMap = isWednesday(today) ? wednesDays : normalDays;
-		} else {
-			currentDayMap = isWednesday(today) ? wednesDaysDST : normalDaysDST;
-		}
-		Day dayToPrint = currentDayMap.get(dayType);
-		for (Period p : dayToPrint.getD()) {
-
-			Period periodToPrint = p;
-			out.write("BEGIN:VEVENT");
-			out.newLine();
-			out.write("DTSTART:"
-					+ today.getYear()
-					+ (today.getMonth() > 9 ? today.getMonth() : ("0" + today.getMonth()))
-					+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
-					+ "T"
-					+ (periodToPrint.getStartTime() > 1000 ? periodToPrint.getStartTime() : "0"
-							+ periodToPrint.getStartTime()) + "00Z");
-			out.newLine();
-			out.write("DTEND:"
-					+ today.getYear()
-					+ (today.getMonth() > 9 ? today.getMonth() : ("0" + today.getMonth()))
-					+ (today.getDay() > 9 ? today.getDay() : ("0" + today.getDay()))
-					+ "T"
-					+ (periodToPrint.getEndTime() > 1000 ? periodToPrint.getEndTime() : "0"
-							+ periodToPrint.getEndTime()) + "00Z");
-			out.newLine();
-			out.write("DTSTAMP:20120820T172628Z");
-			out.newLine();
-			out.write("UID:");
-			out.newLine();
-			out.write("CLASS:PUBLIC");
-			out.newLine();
-			out.write("CREATED:19000101T120000Z");
-			out.newLine();
-			out.write("DESCRIPTION:");
-			out.newLine();
-			out.write("LAST-MODIFIED:20120820T172422Z");
-			out.newLine();
-			out.write("LOCATION:");
-			out.newLine();
-			out.write("SEQUENCE:0");
-			out.newLine();
-			out.write("STATUS:CONFIRMED");
-			out.newLine();
-			out.write("SUMMARY:" + periodName(periodToPrint.getNumber()));
-			out.newLine();
-			out.write("TRANSP:OPAQUE");
-			out.newLine();
-			out.write("END:VEVENT");
-			out.newLine();
-		}
-		out.close();
-
 	}
 
 	public void writeDayToFile(char dayType,
@@ -311,7 +222,7 @@ public class ICSWriter {
 					out.newLine();
 					out.write("STATUS:CONFIRMED");
 					out.newLine();
-					out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames));
+					out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames, today));
 					out.newLine();
 					out.write("TRANSP:OPAQUE");
 					out.newLine();
@@ -334,5 +245,23 @@ public class ICSWriter {
 				break;
 		}
 		return ((periodNumber < 0 && includeBreaksAndLunch) || (periodNumber == -9 && midSchoolElective)) || found;
+	}
+
+	private String communityTime(CurrentDate today) {
+		System.out.println(today.toString() + today.getDayOfTheWeek());
+		switch (today.getDayOfTheWeek()) {
+			case 2:
+				return "Advisory";
+			case 3:
+				return "Assembly";
+			case 4:
+				return "Class Meeting";
+			case 5:
+				return "Clubs";
+			case 6:
+				return "Assembly";
+			default:
+				return "";
+		}
 	}
 }

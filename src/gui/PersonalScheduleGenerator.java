@@ -51,7 +51,7 @@ public class PersonalScheduleGenerator {
 
 	private String[] months = new String[12];
 	private String[] days = new String[31];
-	private String[] years = { "2012", "2013" };
+	private String[] years = { "2013", "2014" };
 	private JTextField txtMycaltxt;
 
 	private JComboBox<Object> startMonthsList;
@@ -103,7 +103,7 @@ public class PersonalScheduleGenerator {
 		}
 
 		frame = new JFrame();
-		frame.setTitle("Kent Denver Personal Schedule Generator 2012-2013 (BETA)");
+		frame.setTitle("Kent Denver Personal Schedule Generator 2013-2014 (BETA)");
 		frame.setResizable(false);
 		frame.setBounds(50, 50, 500, 710);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
