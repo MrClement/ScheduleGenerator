@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class ScheduleGeneratorDriver {
 
 	public ScheduleGeneratorDriver() {
-		CurrentDate startDate = new CurrentDate(8, 19, 2013);
-		CurrentDate endDate = new CurrentDate(5, 30, 2013);
+		CurrentDate startDate = new CurrentDate(8, 21, 2013);
+		CurrentDate endDate = new CurrentDate(5, 23, 2013);
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, startDate, endDate);
 		// true = upper school schedule false = middle school schedule
 		boolean school = false;

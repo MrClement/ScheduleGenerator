@@ -18,7 +18,7 @@ public class ICSWriter {
 	private BufferedWriter out;
 	private String filename;
 	private int startYear = 2013;
-	private CurrentDate schoolStartDate = new CurrentDate(8, 19, 2013);
+	private CurrentDate schoolStartDate = new CurrentDate(8, 21, 2013);
 	private CurrentDate dstStartDate = new CurrentDate(11, 3, 2013);
 	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2014);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 4, 2013);
