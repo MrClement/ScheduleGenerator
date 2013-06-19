@@ -226,7 +226,8 @@ public class DayBuilder78 extends DayBuilder {
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), (dayType % 65 + 5) % 7 + 1);
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 10), -8);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 10),
+					(dayType == 'B' || dayType == 'F') ? -9 : -8);
 			today.add(currentPeriod);
 			dayMap.put(dayType, today);
 		}
