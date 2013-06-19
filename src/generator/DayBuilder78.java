@@ -175,7 +175,7 @@ public class DayBuilder78 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength / 3), -3);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		currentPeriod = new Period(start, temp = makeIntTime(start, 2 * (periodLength / 3)), -6);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 2 * (periodLength / 3)), -6);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);

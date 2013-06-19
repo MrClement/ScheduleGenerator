@@ -293,7 +293,7 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(23);
+		endDaysList.setSelectedIndex(22);
 		endDaysList.setBounds(248, 535, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
@@ -521,7 +521,7 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(23);
+		endDaysList.setSelectedIndex(22);
 		endDaysList.setBounds(232, 526, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
@@ -657,7 +657,7 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(23);
+		endDaysList.setSelectedIndex(22);
 		endDaysList.setBounds(235, 334, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
