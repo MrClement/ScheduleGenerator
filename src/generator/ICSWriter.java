@@ -26,10 +26,10 @@ public class ICSWriter {
 	public ICSWriter(boolean schoolType) {
 
 		DayBuilder db = new DayBuilder();
-		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
-		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
-		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
-		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1));
+		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1), schoolStartDate);
+		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1), schoolStartDate);
+		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
+		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
 		for (Entry<Character, Day> e : wednesDays.entrySet()) {
 			System.out.println(e.getValue().getDayType());
 			System.out.println(e.getValue().toString());
@@ -40,10 +40,10 @@ public class ICSWriter {
 
 	public ICSWriter(String filename, boolean schoolType) throws IOException {
 		DayBuilder db = schoolType ? new DayBuilder() : new DayBuilder78();
-		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
-		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
-		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
-		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1));
+		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1), schoolStartDate);
+		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1), schoolStartDate);
+		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
+		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1), dayAfterDSTStartDate);
 		this.filename = filename;
 	}
 
