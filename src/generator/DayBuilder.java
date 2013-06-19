@@ -1,5 +1,6 @@
 package generator;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class DayBuilder {
@@ -11,6 +12,7 @@ public class DayBuilder {
 	}
 
 	public HashMap<Character, Day> makeNormalDays(int start, CurrentDate schoolStartDate) {
+		CurrentDate now = schoolStartDate;
 		dayMap = new HashMap<Character, Day>();
 		int temp;
 		for (int i = 0; i < 7; i++) {
@@ -28,7 +30,7 @@ public class DayBuilder {
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 10), -1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(dayType));
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(now));
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
@@ -57,7 +59,7 @@ public class DayBuilder {
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(dayType));
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), studentLife(now));
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), -7);
@@ -70,6 +72,7 @@ public class DayBuilder {
 				today.add(currentPeriod);
 				dayMap.put(dayType, today);
 			}
+			now.add(1);
 		}
 		return dayMap;
 
@@ -88,12 +91,16 @@ public class DayBuilder {
 			temp = makeIntTime(temp, 5);
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 2) % 7 + 1);
 			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), -1);
+			temp = makeIntTime(temp, 5);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -3); //Class meeting
 			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
+			temp = makeIntTime(temp, 5);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 70), (dayType % 65 + 3) % 7 + 1);
 			today.add(currentPeriod);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), -7);
+			temp = makeIntTime(temp, 5);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 45), -7);
 			today.add(currentPeriod);
+			temp = makeIntTime(temp, 5);
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 5) % 7 + 1);
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
@@ -113,25 +120,23 @@ public class DayBuilder {
 		return time;
 	}
 
-	private int studentLife(char d) {
-		switch (d) {
-			case 'A':
+	private int studentLife(CurrentDate today) {
+
+		switch (today.getDayOfTheWeek()) {
+			case 1:
+				return -4;
+			case 2:
 				return -2;
-			case 'B':
-				return -5;
-			case 'C':
+			case 3:
 				return -3;
-			case 'D':
-				return -4;
-			case 'E':
-				return -2;
-			case 'F':
-				return -4;
-			case 'G':
+			case 4:
 				return -5;
+			case 5:
+				return -2;
 			default:
 				return -8;
 		}
 	}
+	
 
 }

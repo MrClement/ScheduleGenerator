@@ -1,9 +1,13 @@
 package generator;
+
+import java.util.Calendar;
+
 public class CurrentDate implements Comparable<CurrentDate> {
 
 	private int year;
 	private int month;
 	private int day;
+	private int dayOfTheWeek;
 
 	public CurrentDate() {
 
@@ -13,6 +17,8 @@ public class CurrentDate implements Comparable<CurrentDate> {
 		this.month = month;
 		this.day = day;
 		this.year = year;
+		calculateDayOfTheWeek();
+		
 	}
 
 	public int getYear() {
@@ -124,4 +130,37 @@ public class CurrentDate implements Comparable<CurrentDate> {
 		} else
 			return 1;
 	}
-}
+
+	public int getDayOfTheWeek() {
+		return dayOfTheWeek;
+	}
+
+	public void setDayOfTheWeek(int dayOfTheWeek) {
+		this.dayOfTheWeek = dayOfTheWeek;
+	}
+	
+	public void calculateDayOfTheWeek() {
+		Calendar today = Calendar.getInstance();
+		today.clear();
+		today.set(year, month - 1, day, 8, 8, 8);
+		dayOfTheWeek = today.get(Calendar.DAY_OF_WEEK);
+		
+	}
+
+	public void add(int i) {
+			Calendar today = Calendar.getInstance();
+			today.clear();
+			today.set(year, month - 1, day, 8, 8, 8);
+			today.add(Calendar.DATE, i);
+			year = today.get(Calendar.YEAR);
+			month = today.get(Calendar.MONTH)+1;
+			day = today.get(Calendar.DAY_OF_MONTH);
+			calculateDayOfTheWeek();
+
+
+		
+		
+	}
+		
+	}
+
