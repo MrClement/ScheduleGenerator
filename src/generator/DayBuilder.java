@@ -1,6 +1,5 @@
 package generator;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class DayBuilder {
