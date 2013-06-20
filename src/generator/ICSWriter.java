@@ -25,8 +25,10 @@ public class ICSWriter {
 	private CurrentDate dstStartDate = new CurrentDate(11, 3, 2013);
 	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2014);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 4, 2013);
+	private SchoolType school;
 
 	public ICSWriter(String filename, SchoolType s) throws IOException {
+		this.school = s;
 		DayBuilder db = null;
 		switch (s) {
 			case SIXTH:
@@ -251,6 +253,7 @@ public class ICSWriter {
 			if (found = periodsToInclude[i] == periodNumber)
 				break;
 		}
+
 		return ((periodNumber < 0 && includeBreaksAndLunch) || (periodNumber == Period.ELECTIVES && midSchoolElective))
 				|| found;
 	}
