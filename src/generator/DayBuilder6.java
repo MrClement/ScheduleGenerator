@@ -29,15 +29,18 @@ public class DayBuilder6 extends DayBuilder {
 		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 90), Period.LANG34);
 		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7); // Lunch
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH); // Lunch
 		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -4); // Advisory
-		today.add(currentPeriod);
-		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.GEOBASEBALL); 
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8); // Sports
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT1);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT2);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.HOMEROOM);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
