@@ -24,6 +24,7 @@ public class MultiDayWriter {
 			parseDay(s.nextLine());
 
 		}
+
 		s.close();
 		makeDaysOn(startDate, endDate);
 		this.earlyLimit = earlyLimit;

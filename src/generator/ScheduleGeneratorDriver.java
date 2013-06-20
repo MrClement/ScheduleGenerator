@@ -7,9 +7,8 @@ public class ScheduleGeneratorDriver {
 	public ScheduleGeneratorDriver() {
 		CurrentDate startDate = new CurrentDate(8, 21, 2013);
 		CurrentDate endDate = new CurrentDate(5, 23, 2013);
-		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, startDate, endDate);
-		// true = upper school schedule false = middle school schedule
 		SchoolType school = SchoolType.HIGH;
+		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, startDate, endDate);
 		// sets whether to put breaks, student life, and lunch on the calendar
 		boolean includeBreaksAndLunch = false;
 		// If this has entries it will only generate specific period on specific

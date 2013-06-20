@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class ICSWriter {
 
@@ -14,6 +15,9 @@ public class ICSWriter {
 	private HashMap<Character, Day> wednesDays;
 	private HashMap<Character, Day> normalDaysDST;
 	private HashMap<Character, Day> wednesDaysDST;
+	private PriorityQueue<CurrentDate> excludedElectives;
+	private PriorityQueue<CurrentDate> excludedSevenEight;
+	private PriorityQueue<CurrentDate> excludedSixth;
 	private BufferedWriter out;
 	private String filename;
 	private int startYear = 2013;
@@ -42,6 +46,12 @@ public class ICSWriter {
 		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
 		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
 		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1));
+
+		Excluder e = new Excluder();
+		excludedElectives = e.makeExclusionQueue("ExcludedElectives.txt");
+		excludedSevenEight = e.makeExclusionQueue("ExcludedSevenEight.txt");
+		excludedSixth = e.makeExclusionQueue("ExcludedSixth.txt");
+
 		this.filename = filename;
 	}
 
@@ -179,7 +189,7 @@ public class ICSWriter {
 		}
 		Day dayToPrint = currentDayMap.get(dayType);
 		for (Period p : dayToPrint.getD()) {
-			if (periodShouldBeIncluded(p.getNumber(), periodsToInclude, includeBreaksAndLunch, midSchoolElective)) {
+			if (periodShouldBeIncluded(p.getNumber(), periodsToInclude, includeBreaksAndLunch, midSchoolElective, today)) {
 				if (singleBox.size() < 1 || (singleBox.containsKey(dayType) && p.getNumber() == singleBox.get(dayType))) {
 					Period periodToPrint = p;
 					out.write("BEGIN:VEVENT");
@@ -234,7 +244,8 @@ public class ICSWriter {
 	private boolean periodShouldBeIncluded(int periodNumber,
 			int[] periodsToInclude,
 			boolean includeBreaksAndLunch,
-			boolean midSchoolElective) {
+			boolean midSchoolElective,
+			CurrentDate today) {
 		boolean found = false;
 		for (int i = 0; i < periodsToInclude.length; i++) {
 			if (found = periodsToInclude[i] == periodNumber)
