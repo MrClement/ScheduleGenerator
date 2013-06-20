@@ -29,7 +29,7 @@ public class DayBuilder6 extends DayBuilder {
 		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 90), Period.LANG34);
 		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH); // Lunch
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
 		today.add(currentPeriod);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.GEOBASEBALL); 
 		today.add(currentPeriod);
@@ -47,156 +47,154 @@ public class DayBuilder6 extends DayBuilder {
 		// B day
 		dayType = 'B';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 2);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 90), Period.LANG34);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -6); // Study
-																						// Hall
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 90), Period.LANG12);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT3); 
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -9); // Electives
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT4);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 80), Period.ELECTIVES);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
 		// C Day
 		dayType = 'C';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 3);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 90), Period.LANG12);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 90), Period.LANG34);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT5); 
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT6);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT7);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.HOMEROOM);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
 		// D Day
 		dayType = 'D';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 4);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), -5); // Clubs
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), Period.ROT8);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT9);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 30), Period.HOMEROOM);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 30), Period.ASSEMBLY); 
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 125), Period.LANG34);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT10);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.HOMEROOM);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
 		// E Day
 		dayType = 'E';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 5);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 5), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength / 2), -6); // Study
-																							// Hall
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength / 2), -2); // Assembly
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), Period.ROT11);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.CLUBS);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.BREAK);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 30), Period.ROT12); 
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 125), Period.LANG12);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT13);
+		today.add(currentPeriod);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.HOMEROOM);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
+
 
 		// F Day
 		dayType = 'F';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength), 6);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT14);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 4);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 120), Period.LANG12);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
+		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 125), Period.LANG34);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -9);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 80), Period.ELECTIVES);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
 		// G Day
 		dayType = 'G';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, periodLength / 3), -3);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 2 * (periodLength / 3)), -6);
+		temp = makeIntTime(temp, 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT15);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 2);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 120), Period.LANG34);
 		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -1);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
 		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 3);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), -7);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 6);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 125), Period.LANG12);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength), 5);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT16);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), -8);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.HOMEROOM);
 		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
