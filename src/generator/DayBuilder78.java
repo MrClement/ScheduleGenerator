@@ -235,11 +235,4 @@ public class DayBuilder78 extends DayBuilder {
 
 	}
 
-	private int makeIntTime(int time, int add) {
-		int temp = (time % 1000) % 100;
-		time -= temp;
-		time += ((temp + add) / 60) * 100;
-		time += ((temp + add) % 60);
-		return time;
-	}
 }
