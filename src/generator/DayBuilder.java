@@ -25,16 +25,16 @@ public class DayBuilder {
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 2) % 7 + 1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 10), -1);
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 10), Period.BREAK);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), -42);
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), Period.COMMUNITYTIME);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), -7);
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), Period.LUNCH);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 5) % 7 + 1);
@@ -51,16 +51,16 @@ public class DayBuilder {
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 2) % 7 + 1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 10), -1);
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 10), Period.BREAK);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 75), (dayType % 65 + 3) % 7 + 1);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), -42);
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 20), Period.COMMUNITYTIME);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
-				currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), -7);
+				currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), Period.LUNCH);
 				today.add(currentPeriod);
 				temp = makeIntTime(temp, 5);
 				currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), (dayType % 65 + 5) % 7 + 1);
@@ -89,14 +89,14 @@ public class DayBuilder {
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 2) % 7 + 1);
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), -3); // Class
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.CLASSMEETING); // Class
 																				// meeting
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 70), (dayType % 65 + 3) % 7 + 1);
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
-			currentPeriod = new Period(temp, temp = makeIntTime(temp, 45), -7);
+			currentPeriod = new Period(temp, temp = makeIntTime(temp, 45), Period.LUNCH);
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), (dayType % 65 + 5) % 7 + 1);
