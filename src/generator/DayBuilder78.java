@@ -62,6 +62,7 @@ public class DayBuilder78 extends DayBuilder {
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, periodLength + 20), Period.ELECTIVES);
+		today.add(currentPeriod);
 		dayMap.put(dayType, today);
 
 		// C Day

@@ -21,10 +21,8 @@ public class ICSWriter {
 	private CurrentDate dstStartDate = new CurrentDate(11, 3, 2013);
 	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2014);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 4, 2013);
-	private SchoolType schoolSelector;
 
 	public ICSWriter(String filename, SchoolType s) throws IOException {
-		schoolSelector = s;
 		DayBuilder db = null;
 		switch (s) {
 			case SIXTH:
@@ -123,34 +121,34 @@ public class ICSWriter {
 	private String periodName(int periodNumber, String[] periodNames, CurrentDate today) {
 		String s = "";
 		switch (periodNumber) {
-			case -1:
+			case Period.BREAK:
 				s = "Break";
 				break;
-			case -2:
+			case Period.ASSEMBLY:
 				s = "Assembly";
 				break;
-			case -3:
+			case Period.CLASSMEETING:
 				s = "Class Meeting";
 				break;
-			case -4:
+			case Period.ADVISORY:
 				s = "Advisory";
 				break;
-			case -5:
+			case Period.CLUBS:
 				s = "Clubs";
 				break;
-			case -7:
+			case Period.LUNCH:
 				s = "Lunch";
 				break;
-			case -8:
+			case Period.SPORTS:
 				s = "Sports";
 				break;
-			case -6:
+			case Period.STUDYHALL:
 				s = "Study Hall";
 				break;
-			case -9:
+			case Period.ELECTIVES:
 				s = "Electives";
 				break;
-			case -42:
+			case Period.COMMUNITYTIME:
 				s = communityTime(today);
 				break;
 			default:
@@ -242,7 +240,8 @@ public class ICSWriter {
 			if (found = periodsToInclude[i] == periodNumber)
 				break;
 		}
-		return ((periodNumber < 0 && includeBreaksAndLunch) || (periodNumber == -9 && midSchoolElective)) || found;
+		return ((periodNumber < 0 && includeBreaksAndLunch) || (periodNumber == Period.ELECTIVES && midSchoolElective))
+				|| found;
 	}
 
 	private String communityTime(CurrentDate today) {
