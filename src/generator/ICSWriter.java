@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 public class ICSWriter {
 
@@ -22,26 +21,25 @@ public class ICSWriter {
 	private CurrentDate dstStartDate = new CurrentDate(11, 3, 2013);
 	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2014);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 4, 2013);
+	private SchoolType schoolSelector;
 
-	// private enum SchoolType {SIX, SEVENEIGHT, HIGH};
-
-	public ICSWriter(boolean schoolType) {
-
-		DayBuilder db = new DayBuilder();
-		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
-		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
-		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));
-		wednesDaysDST = db.makeWednesdays(adjustTime(900, dayAfterDSTStartDate, 1));
-		for (Entry<Character, Day> e : wednesDays.entrySet()) {
-			System.out.println(e.getValue().getDayType());
-			System.out.println(e.getValue().toString());
-			System.out.println();
+	public ICSWriter(String filename, SchoolType s) throws IOException {
+		schoolSelector = s;
+		DayBuilder db = null;
+		switch (s) {
+			case SIXTH:
+				db = new DayBuilder6();
+				break;
+			case SEVENEIGHT:
+				db = new DayBuilder78();
+				break;
+			case HIGH:
+				db = new DayBuilder();
+				break;
+			default:
+				break;
 		}
 
-	}
-
-	public ICSWriter(String filename, boolean schoolType) throws IOException {
-		DayBuilder db = schoolType ? new DayBuilder() : new DayBuilder78();
 		normalDays = db.makeNormalDays(adjustTime(800, schoolStartDate, 1));
 		wednesDays = db.makeWednesdays(adjustTime(900, schoolStartDate, 1));
 		normalDaysDST = db.makeNormalDays(adjustTime(800, dayAfterDSTStartDate, 1));

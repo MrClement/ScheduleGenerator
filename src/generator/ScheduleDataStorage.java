@@ -6,7 +6,7 @@ public class ScheduleDataStorage {
 
 	private CurrentDate startDate;
 	private CurrentDate endDate;
-	private boolean school;
+	private SchoolType school;
 	private boolean includeBreaksAndLunch;
 	private HashMap<Character, Integer> singleBox;
 	private int[] periodsToInclude;
@@ -17,7 +17,7 @@ public class ScheduleDataStorage {
 	public ScheduleDataStorage() {
 		startDate = new CurrentDate();
 		endDate = new CurrentDate();
-		school = true;
+		school = SchoolType.HIGH;
 		midSchoolElective = false;
 		includeBreaksAndLunch = false;
 		singleBox = new HashMap<Character, Integer>();
@@ -35,7 +35,7 @@ public class ScheduleDataStorage {
 		return endDate;
 	}
 
-	public boolean isSchool() {
+	public SchoolType getSchool() {
 		return school;
 	}
 
@@ -63,7 +63,7 @@ public class ScheduleDataStorage {
 		this.endDate = endDate;
 	}
 
-	public void setSchool(boolean school) {
+	public void setSchool(SchoolType school) {
 		this.school = school;
 	}
 

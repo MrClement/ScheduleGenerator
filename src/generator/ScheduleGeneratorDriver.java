@@ -9,7 +9,7 @@ public class ScheduleGeneratorDriver {
 		CurrentDate endDate = new CurrentDate(5, 23, 2013);
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, startDate, endDate);
 		// true = upper school schedule false = middle school schedule
-		boolean school = false;
+		SchoolType school = SchoolType.HIGH;
 		// sets whether to put breaks, student life, and lunch on the calendar
 		boolean includeBreaksAndLunch = false;
 		// If this has entries it will only generate specific period on specific
@@ -34,7 +34,7 @@ public class ScheduleGeneratorDriver {
 		CurrentDate endDate = new CurrentDate(5, 30, 2014);
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, data.getStartDate(),
 				data.getEndDate());
-		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.isSchool(),
+		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.getSchool(),
 				data.getSingleBox(), data.isIncludeBreaksAndLunch(), data.isMidSchoolElective());
 	}
 

@@ -83,7 +83,7 @@ public class MultiDayWriter {
 	public void generateICSFile(String filename,
 			int[] periodsToInclude,
 			String[] periodNames,
-			boolean schoolType,
+			SchoolType s,
 			HashMap<Character, Integer> singleBox,
 			boolean includeBreaksAndLunch,
 			boolean midSchoolElective) {
@@ -91,7 +91,7 @@ public class MultiDayWriter {
 		char dayType = 'A';
 		int dayAdjust = 0;
 		try {
-			writer = new ICSWriter(filename, schoolType);
+			writer = new ICSWriter(filename, s);
 			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);

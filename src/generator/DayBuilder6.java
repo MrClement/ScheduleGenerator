@@ -6,7 +6,7 @@ public class DayBuilder6 extends DayBuilder {
 
 	private HashMap<Character, Day> dayMap;
 
-	public DayBuilder6(int lang, int math, int sci, int rot) {
+	public DayBuilder6() {
 		dayMap = new HashMap<Character, Day>();
 
 	}

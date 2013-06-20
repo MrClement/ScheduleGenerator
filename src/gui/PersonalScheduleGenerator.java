@@ -3,6 +3,7 @@ package gui;
 import generator.CurrentDate;
 import generator.ScheduleDataStorage;
 import generator.ScheduleGeneratorDriver;
+import generator.SchoolType;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -343,7 +344,7 @@ public class PersonalScheduleGenerator {
 					data.getPeriodsToInclude()[6] = 7;
 					data.getPeriodNames()[6] = txtPeriod7.getText();
 				}
-				data.setSchool(rdbtnUpperSchool.isSelected());
+				data.setSchool(rdbtnUpperSchool.isSelected() ? SchoolType.HIGH : SchoolType.SEVENEIGHT);
 				data.setFilename(txtMycaltxt.getText());
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
@@ -599,7 +600,7 @@ public class PersonalScheduleGenerator {
 					data.getSingleBox().put(day.toUpperCase().charAt(0), temp);
 					data.getPeriodNames()[temp - 1] = name;
 				}
-				data.setSchool(rdbtnUpperSchool.isSelected());
+				data.setSchool(rdbtnUpperSchool.isSelected() ? SchoolType.HIGH : SchoolType.SEVENEIGHT);
 				data.setFilename(txtMycaltxt.getText());
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
@@ -680,7 +681,7 @@ public class PersonalScheduleGenerator {
 						.getSelectedIndex()])));
 				data.setFilename(txtMycaltxt.getText());
 				data.setMidSchoolElective(true);
-				data.setSchool(false);
+				data.setSchool(SchoolType.SEVENEIGHT);
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
 			}
