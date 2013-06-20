@@ -1,2 +1,3 @@
 /bin
-*.DS_STORE
+/src/.DS_STORE
+/src/generator/.DS_STORE
