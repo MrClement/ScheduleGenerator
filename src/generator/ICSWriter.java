@@ -254,23 +254,29 @@ public class ICSWriter {
 			if (found = periodsToInclude[i] == periodNumber)
 				break;
 		}
-		for(CurrentDate c : excludedSevenEight) {
+		for(CurrentDate c : excludedElectives) {
 		if (c.getMonth() == today.getMonth() && c.getYear() == today.getYear() && c.getDay() == today.getDay()) {
 			electiveInclusion = false;
 		}
 		}
-//		switch (school) {
-//		case SEVENEIGHT:
-//			for(CurrentDate c : excludedSevenEight) {
-//				if (c.getMonth() == today.getMonth() && c.getYear() == today.getYear() && c.getDay() == today.getDay()) {
-//					found = true;
-//				}
-//			}
-//			break;
-//
-//		default:
-//			break;
-//		}
+		switch (school) {
+		case SEVENEIGHT:
+			for(CurrentDate c : excludedSevenEight) {
+				if (c.getMonth() == today.getMonth() && c.getYear() == today.getYear() && c.getDay() == today.getDay()) {
+					return false;
+				}
+			}
+			break;
+		case SIXTH:
+			for(CurrentDate c : excludedSixth) {
+				if (c.getMonth() == today.getMonth() && c.getYear() == today.getYear() && c.getDay() == today.getDay()) {
+					return false;
+				}
+			}
+			break;
+		default:
+			break;
+		}
 
 		return ((periodNumber < 0 && includeBreaksAndLunch) || (periodNumber == Period.ELECTIVES && midSchoolElective && electiveInclusion))
 				|| found;
