@@ -23,7 +23,7 @@ public class Period implements Comparable<Period> {
 	public static final int ROT15 = -45;
 	public static final int ROT16 = -46;
 	public static final int ADVISORY = -4;
-	public static final int COMMUNITYTIME = -42;
+	public static final int COMMUNITYTIME = -10;
 	public static final int ASSEMBLY = -2;
 	public static final int CLASSMEETING = -3;
 	public static final int CLUBS = -5;

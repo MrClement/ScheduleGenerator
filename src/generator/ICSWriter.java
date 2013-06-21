@@ -112,7 +112,6 @@ public class ICSWriter {
 			out.newLine();
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -125,22 +124,382 @@ public class ICSWriter {
 			out.newLine();
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	private String periodName(int periodNumber, String[] periodNames, CurrentDate today, boolean sixth, int[] sixthPrefs) {
 		if(sixth) {
-			return periodNameSixth(sixthPrefs);
+			return periodNameSixth(periodNumber, sixthPrefs);
 		} else {
 			return periodNameNonSixth(periodNumber, periodNames, today);
 		}
 	}
 
-	private String periodNameSixth(int[] sixthPrefs) {
-		// TODO Auto-generated method stub
-		return null;
+	private String periodNameSixth(int periodNumber, int[] sixthPrefs) {
+		String s = "";
+		switch (periodNumber) {
+		case Period.HOMEROOM:
+			s = "Homeroom";
+			break;
+		case Period.GEOBASEBALL:
+			s = "Geobaseball";
+			break;
+		case Period.ELECTIVES:
+			s = "Electives";
+			break;
+		case Period.LUNCH:
+			s = "Lunch";
+			break;
+		case Period.ASSEMBLY:
+			s = "Assembly";
+			break;
+		case Period.BREAK:
+			s = "Break";
+			break;
+		case Period.CLUBS:
+			s = "Clubs";
+			break;
+		case Period.LANG12:
+			switch (sixthPrefs[0]) {
+			case 1:
+			case 2:
+				s = "Language Arts / Social Studies";
+				break;
+			case 3:
+			case 4:
+				switch (sixthPrefs[1]) {
+				case 3:
+					s = "Math";
+					break;
+				case 4:
+					s = "Science";
+					break;
+				default:
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+			break;
+		case Period.LANG34:
+			switch (sixthPrefs[0]) {
+			case 3:
+			case 4:
+				s = "Language Arts / Social Studies";
+				break;
+			case 1:
+			case 2:
+				switch (sixthPrefs[1]) {
+				case 1:
+					s = "Math";
+					break;
+				case 2:
+					s = "Science";
+					break;
+				default:
+					break;
+				}
+				break;
+
+			default:
+				break;
+			}
+			break;
+		case Period.ROT1:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "PE";
+				break;
+			case 2:
+				s = "Latin";
+				break;
+			case 3:
+				s = "Art";
+				break;
+			case 4:
+				s = "Writing";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT2:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Art";
+				break;
+			case 2:
+				s = "PE";
+				break;
+			case 3:
+				s = "Latin";
+				break;
+			case 4:
+				s = "Study Hall";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT3:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "PE";
+				break;
+			case 2:
+				s = "PE";
+				break;
+			case 3:
+				s = "Writing";
+				break;
+			case 4:
+				s = "Art";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT4:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Writing";
+				break;
+			case 2:
+				s = "Art";
+				break;
+			case 3:
+				s = "PE";
+				break;
+			case 4:
+				s = "Latin";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT5:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Art";
+				break;
+			case 2:
+				s = "Writing";
+				break;
+			case 3:
+				s = "PE";
+				break;
+			case 4:
+				s = "PE";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT6:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Latin";
+				break;
+			case 2:
+				s = "PE";
+				break;
+			case 3:
+				s = "Art";
+				break;
+			case 4:
+				s = "Writing";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT7:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "PE";
+				break;
+			case 2:
+				s = "Latin";
+				break;
+			case 3:
+				s = "Study Hall";
+				break;
+			case 4:
+				s = "Art";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT8:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Writing";
+				break;
+			case 2:
+				s = "Art";
+				break;
+			case 3:
+				s = "Latin";
+				break;
+			case 4:
+				s = "Study Hall";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT9:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Study Hall";
+				break;
+			case 2:
+				s = "Writing";
+				break;
+			case 3:
+				s = "PE";
+				break;
+			case 4:
+				s = "Art";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT10:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Latin";
+				break;
+			case 2:
+				s = "Study Hall";
+				break;
+			case 3:
+				s = "Art";
+				break;
+			case 4:
+				s = "PE";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT11:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "PE";
+				break;
+			case 2:
+				s = "Latin";
+				break;
+			case 3:
+				s = "Art";
+				break;
+			case 4:
+				s = "Writing";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT12:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Art";
+				break;
+			case 2:
+				s = "PE";
+				break;
+			case 3:
+				s = "Writing";
+				break;
+			case 4:
+				s = "Latin";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT13:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Writing";
+				break;
+			case 2:
+				s = "Art";
+				break;
+			case 3:
+				s = "Latin";
+				break;
+			case 4:
+				s = "PE";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT14:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Latin";
+				break;
+			case 2:
+				s = "WTRG";
+				break;
+			case 3:
+				s = "Study Hall";
+				break;
+			case 4:
+				s = "Art";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT15:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Art";
+				break;
+			case 2:
+				s = "Study Hall";
+				break;
+			case 3:
+				s = "Writing";
+				break;
+			case 4:
+				s = "PE";
+				break;
+			default:
+				break;
+			}
+			break;
+		case Period.ROT16:
+			switch (sixthPrefs[3]) {
+			case 1:
+				s = "Study Hall";
+				break;
+			case 2:
+				s = "Art";
+				break;
+			case 3:
+				s = "PE";
+				break;
+			case 4:
+				s = "Latin";
+				break;
+			default:
+				break;
+			}
+			break;	
+		default:
+			break;
+		}
+		return s;
 	}
 
 	private String periodNameNonSixth(int periodNumber, String[] periodNames, CurrentDate today) {
@@ -193,7 +552,6 @@ public class ICSWriter {
 		try {
 			out = new BufferedWriter(new FileWriter(filename, true));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		HashMap<Character, Day> currentDayMap;
@@ -264,7 +622,7 @@ public class ICSWriter {
 		boolean found = false;
 		boolean electiveInclusion = true;
 		for (int i = 0; i < periodsToInclude.length; i++) {
-			if (found = periodsToInclude[i] == periodNumber)
+			if (found = (periodsToInclude[i] == periodNumber || periodNumber < -15 ))
 				break;
 		}
 		for(CurrentDate c : excludedElectives) {
@@ -290,8 +648,8 @@ public class ICSWriter {
 		default:
 			break;
 		}
-
-		return ((periodNumber < 0 && includeBreaksAndLunch) || (periodNumber == Period.ELECTIVES && midSchoolElective && electiveInclusion))
+		System.out.println(includeBreaksAndLunch);
+		return (((periodNumber < 0 && periodNumber > -15) && includeBreaksAndLunch) || (periodNumber == Period.ELECTIVES && midSchoolElective && electiveInclusion))
 				|| found;
 	}
 

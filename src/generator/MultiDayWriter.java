@@ -98,7 +98,7 @@ public class MultiDayWriter {
 				char currentDayType = (char) (dayType + dayAdjust);
 				if (c.isAfterOrEqual(earlyLimit) && (c.isBefore(lateLimit) || c.equals(lateLimit)))
 					writer.writeDayToFile(currentDayType, c, periodsToInclude, periodNames, singleBox,
-							sixthPrefs, midSchoolElective, sixth, includeBreaksAndLunch);
+							sixthPrefs, includeBreaksAndLunch, midSchoolElective, sixth);
 				dayAdjust = (dayAdjust + 1) % 7;
 
 			}

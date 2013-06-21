@@ -6,11 +6,11 @@ public class ScheduleGeneratorDriver {
 
 	public ScheduleGeneratorDriver() {
 		CurrentDate startDate = new CurrentDate(8, 21, 2013);
-		CurrentDate endDate = new CurrentDate(5, 23, 2013);
-		SchoolType school = SchoolType.HIGH;
+		CurrentDate endDate = new CurrentDate(5, 23, 2014);
+		SchoolType school = SchoolType.SIXTH;
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, startDate, endDate);
 		// sets whether to put breaks, student life, and lunch on the calendar
-		boolean includeBreaksAndLunch = false;
+		boolean includeBreaksAndLunch = true;
 		// If this has entries it will only generate specific period on specific
 		// days
 		HashMap<Character, Integer> singleBox = new HashMap<Character, Integer>();
@@ -24,7 +24,7 @@ public class ScheduleGeneratorDriver {
 				"Period 6", "Middle School Robotics" };
 		// specifies the name of the output file
 		writer.generateICSFile("test.txt", periodsToInclude, periodNames, school, singleBox, includeBreaksAndLunch,
-				false, false, new int[0]);
+				false, true, new int[]{1, 1, 2, 1});
 
 	}
 

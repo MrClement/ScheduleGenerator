@@ -130,7 +130,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 5), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), Period.ROT11);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -140,7 +139,7 @@ public class DayBuilder6 extends DayBuilder {
 		today.add(currentPeriod);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.BREAK);
 		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 30), Period.ROT12);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT12);
 		today.add(currentPeriod);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
 		today.add(currentPeriod);
@@ -220,7 +219,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 80), Period.LANG12);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -247,7 +245,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 80), Period.LANG34);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -271,7 +268,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 80), Period.LANG12);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -298,7 +294,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), Period.ROT8);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -328,7 +323,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), Period.ROT11);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -359,7 +353,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), Period.ROT14);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
@@ -380,7 +373,6 @@ public class DayBuilder6 extends DayBuilder {
 		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
-		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 50), Period.ROT15);
 		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
