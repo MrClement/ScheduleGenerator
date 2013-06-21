@@ -648,7 +648,6 @@ public class ICSWriter {
 		default:
 			break;
 		}
-		System.out.println(includeBreaksAndLunch);
 		return (((periodNumber < 0 && periodNumber > -15) && includeBreaksAndLunch) || (periodNumber == Period.ELECTIVES && midSchoolElective && electiveInclusion))
 				|| found;
 	}
