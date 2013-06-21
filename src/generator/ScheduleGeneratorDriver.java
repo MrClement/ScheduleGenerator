@@ -24,17 +24,18 @@ public class ScheduleGeneratorDriver {
 				"Period 6", "Middle School Robotics" };
 		// specifies the name of the output file
 		writer.generateICSFile("test.txt", periodsToInclude, periodNames, school, singleBox, includeBreaksAndLunch,
-				false, true, new int[]{1, 1, 2, 1});
+				false, true, new int[] { 1, 1, 2, 1 });
 
 	}
 
 	public ScheduleGeneratorDriver(ScheduleDataStorage data) {
-		CurrentDate startDate = new CurrentDate(8, 21, 2013);
-		CurrentDate endDate = new CurrentDate(5, 23, 2014);
+		CurrentDate startDate = data.getStartDate();
+		CurrentDate endDate = data.getEndDate();
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, data.getStartDate(),
 				data.getEndDate());
 		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.getSchool(),
-				data.getSingleBox(), data.isIncludeBreaksAndLunch(), data.isMidSchoolElective(), data.isSixth(), data.getSixthPrefs());
+				data.getSingleBox(), data.isIncludeBreaksAndLunch(), data.isMidSchoolElective(), data.isSixth(),
+				data.getSixthPrefs());
 	}
 
 }

@@ -50,6 +50,7 @@ public class PersonalScheduleGenerator {
 	private JTextField day5;
 	private JTextField period5;
 
+	private String[] sixthOptions = new String[] { "1", "2", "3", "4" };
 	private String[] months = new String[12];
 	private String[] days = new String[31];
 	private String[] years = { "2013", "2014" };
@@ -73,7 +74,12 @@ public class PersonalScheduleGenerator {
 	private JCheckBox chckbxPeriod_2;
 	private JCheckBox chckbxPeriod_1;
 
-	JCheckBox chckbxIncludeBreaksLunch;
+	private JComboBox<Object> sixthFieldLangSS;
+	private JComboBox<Object> sixthFieldMath;
+	private JComboBox<Object> sixthFieldScience;
+	private JComboBox<Object> sixthFieldRotation;
+
+	private JCheckBox chckbxIncludeBreaksLunch;
 
 	/**
 	 * Launch the application.
@@ -145,7 +151,20 @@ public class PersonalScheduleGenerator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll();
-				initializeMidElevtiveMode();
+				initializeMidElectiveMode();
+				frame.getContentPane().validate();
+				frame.getContentPane().repaint();
+			}
+
+		});
+
+		JMenuItem sixthGradePeriodMode = new JMenuItem("Sixth Grade Period Mode");
+		sixthGradePeriodMode.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				initializeSixthPeriodMode();
 				frame.getContentPane().validate();
 				frame.getContentPane().repaint();
 			}
@@ -155,6 +174,7 @@ public class PersonalScheduleGenerator {
 		mode.add(periodMode);
 		mode.add(singleBoxMode);
 		mode.add(midElectiveMode);
+		mode.add(sixthGradePeriodMode);
 
 		menuBar.add(mode);
 	}
@@ -621,7 +641,7 @@ public class PersonalScheduleGenerator {
 
 	}
 
-	private void initializeMidElevtiveMode() {
+	private void initializeMidElectiveMode() {
 
 		JLabel lblNewLabel = new JLabel(
 				"<html>Welcome to the Kent Denver Personal Schedule Generator! This mode allows you to generate a file that just holds the meeting times of the middle school elective.");
@@ -709,5 +729,131 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(txtMycaltxt);
 		txtMycaltxt.setColumns(10);
 
+	}
+
+	protected void initializeSixthPeriodMode() {
+
+		JLabel lblNewLabel = new JLabel(
+				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>This mode generates the sixth grade schedule.  Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblNewLabel.setBounds(25, 29, 445, 118);
+		frame.getContentPane().add(lblNewLabel);
+
+		JLabel lblLanguageArts = new JLabel("Language Arts / Social Studies group number: ");
+		lblLanguageArts.setBounds(53, 200, 302, 16);
+		frame.getContentPane().add(lblLanguageArts);
+
+		JLabel lblMathGroupNumber = new JLabel("Math group number:");
+		lblMathGroupNumber.setBounds(53, 260, 302, 16);
+		frame.getContentPane().add(lblMathGroupNumber);
+
+		JLabel lblScienceGroupNumber = new JLabel("Science group number:");
+		lblScienceGroupNumber.setBounds(53, 320, 302, 16);
+		frame.getContentPane().add(lblScienceGroupNumber);
+
+		JLabel lblRotationGroupNumber = new JLabel("Rotation group number:");
+		lblRotationGroupNumber.setBounds(53, 380, 302, 16);
+		frame.getContentPane().add(lblRotationGroupNumber);
+
+		sixthFieldLangSS = new JComboBox<Object>(sixthOptions);
+		sixthFieldLangSS.setBounds(356, 200, 64, 27);
+		sixthFieldLangSS.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldLangSS);
+
+		sixthFieldMath = new JComboBox<Object>(sixthOptions);
+		sixthFieldMath.setBounds(356, 260, 64, 27);
+		sixthFieldMath.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldMath);
+
+		sixthFieldScience = new JComboBox<Object>(sixthOptions);
+		sixthFieldScience.setBounds(356, 320, 64, 27);
+		sixthFieldScience.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldScience);
+
+		sixthFieldRotation = new JComboBox<Object>(sixthOptions);
+		sixthFieldRotation.setBounds(356, 380, 64, 27);
+		sixthFieldRotation.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldRotation);
+
+		JLabel lblStartDate = new JLabel("Start Date:");
+		lblStartDate.setBounds(73, 472, 99, 16);
+		frame.getContentPane().add(lblStartDate);
+
+		startMonthsList = new JComboBox<Object>(months);
+		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setBounds(175, 468, 70, 27);
+		frame.getContentPane().add(startMonthsList);
+
+		startDaysList = new JComboBox<Object>(days);
+		startDaysList.setSelectedIndex(20);
+		startDaysList.setBounds(248, 468, 75, 27);
+		frame.getContentPane().add(startDaysList);
+
+		startYearsList = new JComboBox<Object>(years);
+		startYearsList.setSelectedIndex(0);
+		startYearsList.setBounds(326, 468, 99, 27);
+		frame.getContentPane().add(startYearsList);
+
+		JLabel lblEndDate = new JLabel("End Date:");
+		lblEndDate.setBounds(73, 507, 99, 16);
+		frame.getContentPane().add(lblEndDate);
+
+		endMonthsList = new JComboBox<Object>(months);
+		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setBounds(175, 503, 70, 27);
+		frame.getContentPane().add(endMonthsList);
+
+		endDaysList = new JComboBox<Object>(days);
+		endDaysList.setSelectedIndex(22);
+		endDaysList.setBounds(248, 503, 75, 27);
+		frame.getContentPane().add(endDaysList);
+
+		endYearsList = new JComboBox<Object>(years);
+		endYearsList.setSelectedIndex(1);
+		endYearsList.setBounds(326, 503, 99, 27);
+		frame.getContentPane().add(endYearsList);
+
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ScheduleDataStorage data = new ScheduleDataStorage();
+				data.setStartDate(new CurrentDate(Integer.parseInt(months[startMonthsList.getSelectedIndex()]), Integer
+						.parseInt(days[startDaysList.getSelectedIndex()]), Integer.parseInt(years[startYearsList
+						.getSelectedIndex()])));
+				data.setEndDate(new CurrentDate(Integer.parseInt(months[endMonthsList.getSelectedIndex()]), Integer
+						.parseInt(days[endDaysList.getSelectedIndex()]), Integer.parseInt(years[endYearsList
+						.getSelectedIndex()])));
+				data.setFilename(txtMycaltxt.getText());
+				data.setMidSchoolElective(true);
+				data.setSchool(SchoolType.SIXTH);
+				data.setIncludeBreaksAndLunch(true);
+				data.setSixth(true);
+				data.setSixthPrefs(new int[] { Integer.parseInt(sixthOptions[sixthFieldLangSS.getSelectedIndex()]),
+						Integer.parseInt(sixthOptions[sixthFieldMath.getSelectedIndex()]),
+						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()]),
+						Integer.parseInt(sixthOptions[sixthFieldRotation.getSelectedIndex()]) });
+				@SuppressWarnings("unused")
+				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+			}
+		});
+		btnSubmit.setBounds(96, 630, 117, 29);
+		frame.getContentPane().add(btnSubmit);
+
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuit.setBounds(276, 630, 117, 29);
+		frame.getContentPane().add(btnQuit);
+
+		txtMycaltxt = new JTextField();
+		txtMycaltxt.setText("MyCal.txt");
+		txtMycaltxt.setBounds(183, 560, 134, 28);
+		frame.getContentPane().add(txtMycaltxt);
+		txtMycaltxt.setColumns(10);
 	}
 }
