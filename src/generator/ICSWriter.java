@@ -129,8 +129,21 @@ public class ICSWriter {
 			e.printStackTrace();
 		}
 	}
+	
+	private String periodName(int periodNumber, String[] periodNames, CurrentDate today, boolean sixth, int[] sixthPrefs) {
+		if(sixth) {
+			return periodNameSixth(sixthPrefs);
+		} else {
+			return periodNameNonSixth(periodNumber, periodNames, today);
+		}
+	}
 
-	private String periodName(int periodNumber, String[] periodNames, CurrentDate today) {
+	private String periodNameSixth(int[] sixthPrefs) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String periodNameNonSixth(int periodNumber, String[] periodNames, CurrentDate today) {
 		String s = "";
 		switch (periodNumber) {
 			case Period.BREAK:
@@ -174,9 +187,9 @@ public class ICSWriter {
 			CurrentDate today,
 			int[] periodsToInclude,
 			String[] periodNames,
-			HashMap<Character, Integer> singleBox,
+			HashMap<Character, Integer> singleBox, int[] sixthPrefs,
 			boolean includeBreaksAndLunch,
-			boolean midSchoolElective) throws IOException {
+			boolean midSchoolElective, boolean sixth) throws IOException {
 		try {
 			out = new BufferedWriter(new FileWriter(filename, true));
 		} catch (FileNotFoundException e) {
@@ -230,7 +243,7 @@ public class ICSWriter {
 					out.newLine();
 					out.write("STATUS:CONFIRMED");
 					out.newLine();
-					out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames, today));
+					out.write("SUMMARY:" + periodName(periodToPrint.getNumber(), periodNames, today, sixth, sixthPrefs));
 					out.newLine();
 					out.write("TRANSP:OPAQUE");
 					out.newLine();

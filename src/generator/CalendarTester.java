@@ -9,6 +9,7 @@ public class CalendarTester {
 	/**
 	 * @param args
 	 */
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		try {
 			ICSWriter test = new ICSWriter("Hi.txt", SchoolType.HIGH);

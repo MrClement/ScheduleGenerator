@@ -13,6 +13,8 @@ public class ScheduleDataStorage {
 	private String[] periodNames;
 	private String filename;
 	private boolean midSchoolElective;
+	private boolean sixth;
+	private int[] sixthPrefs;
 
 	public ScheduleDataStorage() {
 		startDate = new CurrentDate();
@@ -24,6 +26,8 @@ public class ScheduleDataStorage {
 		periodsToInclude = new int[8];
 		periodNames = new String[8];
 		filename = "default.txt";
+		sixth = false;
+		sixthPrefs = new int[0];
 
 	}
 
@@ -98,5 +102,22 @@ public class ScheduleDataStorage {
 	public void setMidSchoolElective(boolean midSchoolElective) {
 		this.midSchoolElective = midSchoolElective;
 	}
+
+	public boolean isSixth() {
+		return sixth;
+	}
+
+	public void setSixth(boolean sixth) {
+		this.sixth = sixth;
+	}
+
+	public int[] getSixthPrefs() {
+		return sixthPrefs;
+	}
+
+	public void setSixthPrefs(int[] sixthPrefs) {
+		this.sixthPrefs = sixthPrefs;
+	}
+
 
 }
