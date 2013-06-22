@@ -1,6 +1,7 @@
 package gui;
 
 import generator.CurrentDate;
+import generator.Period;
 import generator.ScheduleDataStorage;
 import generator.ScheduleGeneratorDriver;
 import generator.SchoolType;
@@ -834,6 +835,7 @@ public class PersonalScheduleGenerator {
 						Integer.parseInt(sixthOptions[sixthFieldMath.getSelectedIndex()]),
 						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()]),
 						Integer.parseInt(sixthOptions[sixthFieldRotation.getSelectedIndex()]) });
+				data.setPeriodsToInclude(Period.sixthGradeClasses);
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
 			}

@@ -622,7 +622,7 @@ public class ICSWriter {
 		boolean found = false;
 		boolean electiveInclusion = true;
 		for (int i = 0; i < periodsToInclude.length; i++) {
-			if (found = (periodsToInclude[i] == periodNumber || periodNumber < -15 ))
+			if (found = periodsToInclude[i] == periodNumber )
 				break;
 		}
 		for(CurrentDate c : excludedElectives) {
