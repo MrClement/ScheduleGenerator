@@ -3,8 +3,10 @@ public class Period implements Comparable<Period> {
 	
 	public static final int HOMEROOM = -20;
 	public static final int LANG12 = -21;
-	public static final int LANG34 = -22;
-	public static final int GEOBASEBALL = -23;
+	public static final int SS12 = -22;
+	public static final int LANG34 = -23;
+	public static final int SS34 = -24;
+	public static final int GEOBASEBALL = -25;
 	
 	public static final int ROT1 = -31;
 	public static final int ROT2 = -32;
