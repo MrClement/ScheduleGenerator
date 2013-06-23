@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -368,6 +369,7 @@ public class PersonalScheduleGenerator {
 				data.setFilename(txtMycaltxt.getText());
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+				JOptionPane.showMessageDialog(frame, txtMycaltxt.getText() + " written sucessfully.");
 
 			}
 		});
@@ -624,6 +626,7 @@ public class PersonalScheduleGenerator {
 				data.setFilename(txtMycaltxt.getText());
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+				JOptionPane.showMessageDialog(frame, txtMycaltxt.getText() + " written sucessfully.");
 			}
 
 		});
@@ -704,6 +707,7 @@ public class PersonalScheduleGenerator {
 				data.setSchool(SchoolType.SEVENEIGHT);
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+				JOptionPane.showMessageDialog(frame, txtMycaltxt.getText() + " written sucessfully.");
 			}
 
 		});
@@ -836,6 +840,7 @@ public class PersonalScheduleGenerator {
 						Integer.parseInt(sixthOptions[sixthFieldRotation.getSelectedIndex()]) });
 				@SuppressWarnings("unused")
 				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+				JOptionPane.showMessageDialog(frame, txtMycaltxt.getText() + " written sucessfully.");
 			}
 		});
 		btnSubmit.setBounds(96, 630, 117, 29);
