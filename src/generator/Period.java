@@ -35,6 +35,7 @@ public class Period implements Comparable<Period> {
 	public static final int ELECTIVES = -9;
 	public static final int BREAK = -1;
 	public static int[] sixthGradeClasses = {ROT1, ROT2, ROT3, ROT4, ROT5, ROT6, ROT7, ROT8, ROT9, ROT10, ROT11, ROT12, ROT13, ROT14, ROT15, ROT16, LANG12, LANG34, SS12, SS34, GEOBASEBALL, HOMEROOM};
+	public static int[] sixthGradeRotations = {ROT1, ROT2, ROT3, ROT4, ROT5, ROT6, ROT7, ROT8, ROT9, ROT10, ROT11, ROT12, ROT13, ROT14, ROT15, ROT16};
 	
 	
 

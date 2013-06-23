@@ -10,6 +10,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -53,6 +54,7 @@ public class PersonalScheduleGenerator {
 	private JTextField period5;
 
 	private String[] sixthOptions = new String[] { "1", "2", "3", "4" };
+	private String[] sixthSimpleOptions = new String[]{"1 & 2", "3 & 4"};
 	private String[] months = new String[12];
 	private String[] days = new String[31];
 	private String[] years = { "2013", "2014" };
@@ -82,7 +84,7 @@ public class PersonalScheduleGenerator {
 	private JComboBox<Object> sixthFieldRotation;
 
 	private JCheckBox chckbxIncludeBreaksLunch;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -863,4 +865,206 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(txtMycaltxt);
 		txtMycaltxt.setColumns(10);
 	}
+	
+	protected void initializeSixthPeriodSelectionMode() {
+		JLabel lblNewLabel = new JLabel(
+				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		lblNewLabel.setBounds(24, 29, 445, 67);
+		frame.getContentPane().add(lblNewLabel);
+
+		JLabel lblNewLabel_2 = new JLabel(
+				"<html> You can uncheck the box next to any period that you do not wish to add to your calendar. Make sure to select the correct section to the right of the check boxes.</html>");
+		lblNewLabel_2.setBounds(28, 118, 438, 67);
+		frame.getContentPane().add(lblNewLabel_2);
+
+		chckbxPeriod = new JCheckBox("Language Arts");
+		chckbxPeriod.setSelected(true);
+		chckbxPeriod.setBounds(85, 183, 128, 23);
+		frame.getContentPane().add(chckbxPeriod);
+
+		chckbxPeriod_6 = new JCheckBox("Social Studies");
+		chckbxPeriod_6.setSelected(true);
+		chckbxPeriod_6.setBounds(85, 209, 128, 23);
+		frame.getContentPane().add(chckbxPeriod_6);
+
+		chckbxPeriod_5 = new JCheckBox("Math");
+		chckbxPeriod_5.setSelected(true);
+		chckbxPeriod_5.setBounds(85, 257, 128, 23);
+		frame.getContentPane().add(chckbxPeriod_5);
+
+		chckbxPeriod_4 = new JCheckBox("Science");
+		chckbxPeriod_4.setSelected(true);
+		chckbxPeriod_4.setBounds(85, 283, 128, 23);
+		frame.getContentPane().add(chckbxPeriod_4);
+
+		chckbxPeriod_3 = new JCheckBox("Rotations");
+		chckbxPeriod_3.setSelected(true);
+		chckbxPeriod_3.setBounds(85, 335, 128, 23);
+		frame.getContentPane().add(chckbxPeriod_3);
+		
+		sixthFieldLangSS = new JComboBox<Object>(sixthSimpleOptions);
+		sixthFieldLangSS.setBounds(272, 193, 64, 27);
+		sixthFieldLangSS.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldLangSS);
+
+		sixthFieldScience = new JComboBox<Object>(sixthSimpleOptions);
+		sixthFieldScience.setBounds(272, 267, 64, 27);
+		sixthFieldScience.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldScience);
+
+		sixthFieldRotation = new JComboBox<Object>(sixthOptions);
+		sixthFieldRotation.setBounds(272, 333, 64, 27);
+		sixthFieldRotation.setSelectedIndex(0);
+		frame.getContentPane().add(sixthFieldRotation);
+		
+		chckbxPeriod_1 = new JCheckBox("Electives");
+		chckbxPeriod_1.setSelected(true);
+		chckbxPeriod_1.setBounds(85, 383, 128, 23);
+		frame.getContentPane().add(chckbxPeriod_1);
+
+		JLabel lblStartDate = new JLabel("Start Date:");
+		lblStartDate.setBounds(57, 426, 99, 16);
+		frame.getContentPane().add(lblStartDate);
+
+		startMonthsList = new JComboBox<Object>(months);
+		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setBounds(159, 422, 70, 27);
+		frame.getContentPane().add(startMonthsList);
+
+		startDaysList = new JComboBox<Object>(days);
+		startDaysList.setSelectedIndex(20);
+		startDaysList.setBounds(232, 422, 75, 27);
+		frame.getContentPane().add(startDaysList);
+
+		startYearsList = new JComboBox<Object>(years);
+		startYearsList.setSelectedIndex(0);
+		startYearsList.setBounds(310, 422, 99, 27);
+		frame.getContentPane().add(startYearsList);
+
+		JLabel lblEndDate = new JLabel("End Date:");
+		lblEndDate.setBounds(57, 479, 99, 16);
+		frame.getContentPane().add(lblEndDate);
+
+		endMonthsList = new JComboBox<Object>(months);
+		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setBounds(159, 475, 70, 27);
+		frame.getContentPane().add(endMonthsList);
+
+		endDaysList = new JComboBox<Object>(days);
+		endDaysList.setSelectedIndex(22);
+		endDaysList.setBounds(232, 475, 75, 27);
+		frame.getContentPane().add(endDaysList);
+
+		endYearsList = new JComboBox<Object>(years);
+		endYearsList.setSelectedIndex(1);
+		endYearsList.setBounds(310, 475, 99, 27);
+		frame.getContentPane().add(endYearsList);
+
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Integer> periods = new ArrayList<Integer>();
+				ScheduleDataStorage data = new ScheduleDataStorage();
+				data.setStartDate(new CurrentDate(Integer.parseInt(months[startMonthsList.getSelectedIndex()]), Integer
+						.parseInt(days[startDaysList.getSelectedIndex()]), Integer.parseInt(years[startYearsList
+						.getSelectedIndex()])));
+				data.setEndDate(new CurrentDate(Integer.parseInt(months[endMonthsList.getSelectedIndex()]), Integer
+						.parseInt(days[endDaysList.getSelectedIndex()]), Integer.parseInt(years[endYearsList
+						.getSelectedIndex()])));
+				data.setFilename(txtMycaltxt.getText());
+				data.setSchool(SchoolType.SIXTH);
+				if(chckbxPeriod_1.isSelected()) {
+					data.setMidSchoolElective(true);
+				} else {
+					data.setMidSchoolElective(false);
+				}
+				if (chckbxIncludeBreaksLunch.isSelected()) {
+					data.setIncludeBreaksAndLunch(true);
+					periods.add(Period.GEOBASEBALL);
+				} else {
+					data.setIncludeBreaksAndLunch(false);
+				}
+				data.setSixth(true);
+				data.setSixthPrefs(new int[] { Integer.parseInt(sixthOptions[sixthFieldLangSS.getSelectedIndex()==0 ? 0 : 2]),
+						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]),
+						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]),
+						Integer.parseInt(sixthOptions[sixthFieldRotation.getSelectedIndex()]) });
+				
+				if(chckbxPeriod.isSelected()) {
+					if(sixthFieldLangSS.getSelectedIndex() == 0) {
+						periods.add(Period.LANG12);
+					} else {
+						periods.add(Period.LANG34);
+					}
+				}
+				if(chckbxPeriod_6.isSelected()) {
+					if(sixthFieldLangSS.getSelectedIndex() == 0) {
+						periods.add(Period.SS12);
+					} else {
+						periods.add(Period.SS34);
+					}
+				}
+				if(chckbxPeriod_5.isSelected()) {
+					if(sixthFieldLangSS.getSelectedIndex() == 1) {
+						periods.add(Period.LANG12);
+					} else {
+						periods.add(Period.LANG34); 
+					}
+				}
+				if(chckbxPeriod_4.isSelected()) {
+					if(sixthFieldLangSS.getSelectedIndex() == 1) {
+						periods.add(Period.SS12);
+					} else {
+						periods.add(Period.SS34);
+					}
+				}
+				if(chckbxPeriod_3.isSelected()) {
+					for(int i = Period.ROT1 ; i <= Period.ROT16; i++) {
+						periods.add(i);
+					}
+				}
+				data.setPeriodsToInclude(makeArray(periods));
+				@SuppressWarnings("unused")
+				ScheduleGeneratorDriver maker = new ScheduleGeneratorDriver(data);
+				JOptionPane.showMessageDialog(frame, txtMycaltxt.getText() + " written sucessfully.");
+			}
+
+			private int[] makeArray(ArrayList<Integer> periods) {
+				int[] temp = new int[periods.size()];
+				for(int i = 0 ; i < temp.length ; i++) {
+					temp[i] = periods.get(i);
+				}
+				return temp;
+			}
+		});
+		btnSubmit.setBounds(96, 630, 117, 29);
+		frame.getContentPane().add(btnSubmit);
+
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuit.setBounds(276, 630, 117, 29);
+		frame.getContentPane().add(btnQuit);
+
+		JLabel lblOutputFilename = new JLabel("Output filename:");
+		lblOutputFilename.setBounds(113, 580, 141, 16);
+		frame.getContentPane().add(lblOutputFilename);
+
+		txtMycaltxt = new JTextField();
+		txtMycaltxt.setText("MyCal.txt");
+		txtMycaltxt.setBounds(243, 574, 134, 28);
+		frame.getContentPane().add(txtMycaltxt);
+		txtMycaltxt.setColumns(10);
+
+		chckbxIncludeBreaksLunch = new JCheckBox("Include breaks, lunch, geobaseball, and student life (assembly, homeroom, etc.)");
+		chckbxIncludeBreaksLunch.setBounds(37, 530, 433, 23);
+		frame.getContentPane().add(chckbxIncludeBreaksLunch);
+	}
+	
 }
