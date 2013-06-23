@@ -164,20 +164,26 @@ public class ICSWriter {
 			switch (sixthPrefs[0]) {
 			case 1:
 			case 2:
-				s = "Language Arts / Social Studies";
+				s = "Language Arts";
 				break;
 			case 3:
 			case 4:
-				switch (sixthPrefs[1]) {
-				case 3:
-					s = "Math";
-					break;
-				case 4:
-					s = "Science";
-					break;
-				default:
-					break;
-				}
+				s = "Math";
+				break;
+
+			default:
+				break;
+			}
+			break;
+		case Period.SS12:
+			switch (sixthPrefs[0]) {
+			case 1:
+			case 2:
+				s = "Social Studies";
+				break;
+			case 3:
+			case 4:
+				s = "Science";
 				break;
 
 			default:
@@ -186,22 +192,28 @@ public class ICSWriter {
 			break;
 		case Period.LANG34:
 			switch (sixthPrefs[0]) {
-			case 3:
-			case 4:
-				s = "Language Arts / Social Studies";
-				break;
 			case 1:
 			case 2:
-				switch (sixthPrefs[1]) {
-				case 1:
-					s = "Math";
-					break;
-				case 2:
-					s = "Science";
-					break;
-				default:
-					break;
-				}
+				s = "Language Arts";
+				break;
+			case 3:
+			case 4:
+				s = "Math";
+				break;
+
+			default:
+				break;
+			}
+			break;
+		case Period.SS34:
+			switch (sixthPrefs[0]) {
+			case 1:
+			case 2:
+				s = "Social Studies";
+				break;
+			case 3:
+			case 4:
+				s = "Science";
 				break;
 
 			default:
@@ -622,7 +634,7 @@ public class ICSWriter {
 		boolean found = false;
 		boolean electiveInclusion = true;
 		for (int i = 0; i < periodsToInclude.length; i++) {
-			if (found = (periodsToInclude[i] == periodNumber || periodNumber < -15 ))
+			if (found = periodsToInclude[i] == periodNumber )
 				break;
 		}
 		for(CurrentDate c : excludedElectives) {
