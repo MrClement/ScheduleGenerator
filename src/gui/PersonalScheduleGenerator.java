@@ -162,7 +162,7 @@ public class PersonalScheduleGenerator {
 
 		});
 
-		JMenuItem sixthGradePeriodMode = new JMenuItem("Sixth Grade Period Mode");
+		JMenuItem sixthGradePeriodMode = new JMenuItem("Sixth Grade Mode");
 		sixthGradePeriodMode.addActionListener(new ActionListener() {
 
 			@Override
@@ -174,11 +174,25 @@ public class PersonalScheduleGenerator {
 			}
 
 		});
+		
+		JMenuItem sixthGradePeriodSelectionMode = new JMenuItem("Sixth Grade Period Selection Mode");
+		sixthGradePeriodSelectionMode.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				initializeSixthPeriodSelectionMode();
+				frame.getContentPane().validate();
+				frame.getContentPane().repaint();
+			}
+
+		});
 
 		mode.add(periodMode);
 		mode.add(singleBoxMode);
 		mode.add(midElectiveMode);
 		mode.add(sixthGradePeriodMode);
+		mode.add(sixthGradePeriodSelectionMode);
 
 		menuBar.add(mode);
 	}
