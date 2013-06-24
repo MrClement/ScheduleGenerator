@@ -194,11 +194,11 @@ public class ICSWriter {
 			switch (sixthPrefs[0]) {
 			case 1:
 			case 2:
-				s = "Language Arts";
+				s = "Math";
 				break;
 			case 3:
 			case 4:
-				s = "Math";
+				s = "Language Arts";
 				break;
 
 			default:
@@ -209,11 +209,11 @@ public class ICSWriter {
 			switch (sixthPrefs[0]) {
 			case 1:
 			case 2:
-				s = "Social Studies";
+				s = "Science";
 				break;
 			case 3:
 			case 4:
-				s = "Science";
+				s = "Social Studies";
 				break;
 
 			default:

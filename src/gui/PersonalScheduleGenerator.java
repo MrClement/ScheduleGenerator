@@ -1006,7 +1006,7 @@ public class PersonalScheduleGenerator {
 						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]),
 						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]),
 						Integer.parseInt(sixthOptions[sixthFieldRotation.getSelectedIndex()]) });
-				
+				System.out.println(Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]));
 				if(chckbxPeriod.isSelected()) {
 					if(sixthFieldLangSS.getSelectedIndex() == 0) {
 						periods.add(Period.LANG12);
@@ -1076,8 +1076,8 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(txtMycaltxt);
 		txtMycaltxt.setColumns(10);
 
-		chckbxIncludeBreaksLunch = new JCheckBox("Include breaks, lunch, geobaseball, and student life (assembly, homeroom, etc.)");
-		chckbxIncludeBreaksLunch.setBounds(37, 530, 433, 23);
+		chckbxIncludeBreaksLunch = new JCheckBox("<html>Include breaks, lunch, geobaseball, and student life <br>(assembly, homeroom, etc.)</html>");
+		chckbxIncludeBreaksLunch.setBounds(37, 530, 433, 40);
 		frame.getContentPane().add(chckbxIncludeBreaksLunch);
 	}
 	
