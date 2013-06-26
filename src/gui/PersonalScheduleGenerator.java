@@ -7,7 +7,6 @@ import generator.ScheduleGeneratorDriver;
 import generator.SchoolType;
 
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class PersonalScheduleGenerator {
 	private JTextField period5;
 
 	private String[] sixthOptions = new String[] { "1", "2", "3", "4" };
-	private String[] sixthSimpleOptions = new String[]{"1 & 2", "3 & 4"};
+	private String[] sixthSimpleOptions = new String[] { "1 & 2", "3 & 4" };
 	private String[] months = new String[12];
 	private String[] days = new String[31];
 	private String[] years = { "2013", "2014" };
@@ -84,7 +83,7 @@ public class PersonalScheduleGenerator {
 	private JComboBox<Object> sixthFieldRotation;
 
 	private JCheckBox chckbxIncludeBreaksLunch;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -174,7 +173,7 @@ public class PersonalScheduleGenerator {
 			}
 
 		});
-		
+
 		JMenuItem sixthGradePeriodSelectionMode = new JMenuItem("Sixth Grade Period Selection Mode");
 		sixthGradePeriodSelectionMode.addActionListener(new ActionListener() {
 
@@ -215,7 +214,7 @@ public class PersonalScheduleGenerator {
 		rdbtnUpperSchool.setBounds(284, 108, 141, 23);
 		frame.getContentPane().add(rdbtnUpperSchool);
 
-		rdbtnMiddleSchool = new JRadioButton("Middle School");
+		rdbtnMiddleSchool = new JRadioButton("7th and 8th Grade");
 		schoolType.add(rdbtnMiddleSchool);
 		rdbtnMiddleSchool.setBounds(284, 141, 141, 23);
 		frame.getContentPane().add(rdbtnMiddleSchool);
@@ -438,7 +437,7 @@ public class PersonalScheduleGenerator {
 		rdbtnUpperSchool.setBounds(283, 146, 141, 23);
 		frame.getContentPane().add(rdbtnUpperSchool);
 
-		rdbtnMiddleSchool = new JRadioButton("Middle School");
+		rdbtnMiddleSchool = new JRadioButton("7th and 8th Grade");
 		schoolType.add(rdbtnMiddleSchool);
 		rdbtnMiddleSchool.setBounds(283, 186, 141, 23);
 		frame.getContentPane().add(rdbtnMiddleSchool);
@@ -875,7 +874,7 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(txtMycaltxt);
 		txtMycaltxt.setColumns(10);
 	}
-	
+
 	protected void initializeSixthPeriodSelectionMode() {
 		JLabel lblNewLabel = new JLabel(
 				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
@@ -911,7 +910,7 @@ public class PersonalScheduleGenerator {
 		chckbxPeriod_3.setSelected(true);
 		chckbxPeriod_3.setBounds(85, 335, 128, 23);
 		frame.getContentPane().add(chckbxPeriod_3);
-		
+
 		sixthFieldLangSS = new JComboBox<Object>(sixthSimpleOptions);
 		sixthFieldLangSS.setBounds(272, 193, 64, 27);
 		sixthFieldLangSS.setSelectedIndex(0);
@@ -926,7 +925,7 @@ public class PersonalScheduleGenerator {
 		sixthFieldRotation.setBounds(272, 333, 64, 27);
 		sixthFieldRotation.setSelectedIndex(0);
 		frame.getContentPane().add(sixthFieldRotation);
-		
+
 		chckbxPeriod_1 = new JCheckBox("Electives");
 		chckbxPeriod_1.setSelected(true);
 		chckbxPeriod_1.setBounds(85, 383, 128, 23);
@@ -985,7 +984,7 @@ public class PersonalScheduleGenerator {
 						.getSelectedIndex()])));
 				data.setFilename(txtMycaltxt.getText());
 				data.setSchool(SchoolType.SIXTH);
-				if(chckbxPeriod_1.isSelected()) {
+				if (chckbxPeriod_1.isSelected()) {
 					data.setMidSchoolElective(true);
 				} else {
 					data.setMidSchoolElective(false);
@@ -997,41 +996,42 @@ public class PersonalScheduleGenerator {
 					data.setIncludeBreaksAndLunch(false);
 				}
 				data.setSixth(true);
-				data.setSixthPrefs(new int[] { Integer.parseInt(sixthOptions[sixthFieldLangSS.getSelectedIndex()==0 ? 0 : 2]),
-						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]),
-						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]),
+				data.setSixthPrefs(new int[] {
+						Integer.parseInt(sixthOptions[sixthFieldLangSS.getSelectedIndex() == 0 ? 0 : 2]),
+						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex() == 0 ? 0 : 2]),
+						Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex() == 0 ? 0 : 2]),
 						Integer.parseInt(sixthOptions[sixthFieldRotation.getSelectedIndex()]) });
-				System.out.println(Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex()==0 ? 0 : 2]));
-				if(chckbxPeriod.isSelected()) {
-					if(sixthFieldLangSS.getSelectedIndex() == 0) {
+				System.out.println(Integer.parseInt(sixthOptions[sixthFieldScience.getSelectedIndex() == 0 ? 0 : 2]));
+				if (chckbxPeriod.isSelected()) {
+					if (sixthFieldLangSS.getSelectedIndex() == 0) {
 						periods.add(Period.LANG12);
 					} else {
 						periods.add(Period.LANG34);
 					}
 				}
-				if(chckbxPeriod_6.isSelected()) {
-					if(sixthFieldLangSS.getSelectedIndex() == 0) {
+				if (chckbxPeriod_6.isSelected()) {
+					if (sixthFieldLangSS.getSelectedIndex() == 0) {
 						periods.add(Period.SS12);
 					} else {
 						periods.add(Period.SS34);
 					}
 				}
-				if(chckbxPeriod_5.isSelected()) {
-					if(sixthFieldLangSS.getSelectedIndex() == 1) {
+				if (chckbxPeriod_5.isSelected()) {
+					if (sixthFieldLangSS.getSelectedIndex() == 1) {
 						periods.add(Period.LANG12);
 					} else {
-						periods.add(Period.LANG34); 
+						periods.add(Period.LANG34);
 					}
 				}
-				if(chckbxPeriod_4.isSelected()) {
-					if(sixthFieldLangSS.getSelectedIndex() == 1) {
+				if (chckbxPeriod_4.isSelected()) {
+					if (sixthFieldLangSS.getSelectedIndex() == 1) {
 						periods.add(Period.SS12);
 					} else {
 						periods.add(Period.SS34);
 					}
 				}
-				if(chckbxPeriod_3.isSelected()) {
-					for(int i = Period.ROT1 ; i <= Period.ROT16; i++) {
+				if (chckbxPeriod_3.isSelected()) {
+					for (int i = Period.ROT1; i <= Period.ROT16; i++) {
 						periods.add(i);
 					}
 				}
@@ -1043,7 +1043,7 @@ public class PersonalScheduleGenerator {
 
 			private int[] makeArray(ArrayList<Integer> periods) {
 				int[] temp = new int[periods.size()];
-				for(int i = 0 ; i < temp.length ; i++) {
+				for (int i = 0; i < temp.length; i++) {
 					temp[i] = periods.get(i);
 				}
 				return temp;
@@ -1071,9 +1071,10 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(txtMycaltxt);
 		txtMycaltxt.setColumns(10);
 
-		chckbxIncludeBreaksLunch = new JCheckBox("<html>Include breaks, lunch, geobaseball, and student life <br>(assembly, homeroom, etc.)</html>");
+		chckbxIncludeBreaksLunch = new JCheckBox(
+				"<html>Include breaks, lunch, geobaseball, and student life <br>(assembly, homeroom, etc.)</html>");
 		chckbxIncludeBreaksLunch.setBounds(37, 530, 433, 40);
 		frame.getContentPane().add(chckbxIncludeBreaksLunch);
 	}
-	
+
 }
