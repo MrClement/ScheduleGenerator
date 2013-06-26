@@ -200,9 +200,8 @@ public class PersonalScheduleGenerator {
 	protected void initializePeriodMode() {
 
 		JLabel lblNewLabel = new JLabel(
-				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		lblNewLabel.setBounds(25, 29, 445, 67);
+				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below or use the Mode menu to see different options.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
+		lblNewLabel.setBounds(26, 15, 445, 90);
 		frame.getContentPane().add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel(
@@ -425,7 +424,6 @@ public class PersonalScheduleGenerator {
 
 		JLabel lblNewLabel = new JLabel(
 				"<html>Welcome to the Kent Denver Personal Schedule Generator! This mode allows you to generate events for meetings that occur once in a cycle (e.g. Period 1 on G Days).  There are five slots for these sort of meetings in the form below, if you do not need all five leave the remainder blank. If you need more, just run the program a second time.    ");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblNewLabel.setBounds(27, 32, 438, 102);
 		frame.getContentPane().add(lblNewLabel);
 
@@ -665,7 +663,6 @@ public class PersonalScheduleGenerator {
 
 		JLabel lblNewLabel = new JLabel(
 				"<html>Welcome to the Kent Denver Personal Schedule Generator! This mode allows you to generate a file that just holds the meeting times of the middle school elective.");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblNewLabel.setBounds(27, 32, 438, 102);
 		frame.getContentPane().add(lblNewLabel);
 
@@ -756,7 +753,6 @@ public class PersonalScheduleGenerator {
 
 		JLabel lblNewLabel = new JLabel(
 				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>This mode generates the sixth grade schedule.  Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblNewLabel.setBounds(25, 29, 445, 118);
 		frame.getContentPane().add(lblNewLabel);
 
@@ -883,7 +879,6 @@ public class PersonalScheduleGenerator {
 	protected void initializeSixthPeriodSelectionMode() {
 		JLabel lblNewLabel = new JLabel(
 				"<html>Welcome to the Kent Denver Personal Schedule Generator! </br>Fill out the fields below then press submit.  </br> Once you are content with your settings, press submit and upload the generated file (created in the same directory as this program) to your calendar.</html>");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		lblNewLabel.setBounds(24, 29, 445, 67);
 		frame.getContentPane().add(lblNewLabel);
 
