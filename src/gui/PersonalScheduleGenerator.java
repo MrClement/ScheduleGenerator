@@ -422,7 +422,7 @@ public class PersonalScheduleGenerator {
 	private void initializeSingleMode() {
 
 		JLabel lblNewLabel = new JLabel(
-				"<html>Welcome to the Kent Denver Personal Schedule Generator! This mode allows you to generate events for meetings that occur once in a cycle (e.g. Period 1 on G Days).  There are five slots for these sort of meetings in the form below, if you do not need all five leave the remainder blank. If you need more, just run the program a second time.    ");
+				"<html>Welcome to the Kent Denver Personal Schedule Generator! This mode allows you to generate events for meetings that occur once in a cycle (e.g. Period 1 on G Days).  There are five slots for these sort of meetings in the form below, if you do not need all five leave the remainder blank. If you need more, just run the program a second time.  If events share the same period please run the program a second time for the second event. ");
 		lblNewLabel.setBounds(27, 32, 438, 102);
 		frame.getContentPane().add(lblNewLabel);
 
@@ -1031,7 +1031,7 @@ public class PersonalScheduleGenerator {
 					}
 				}
 				if (chckbxPeriod_3.isSelected()) {
-					for (int i = Period.ROT1; i <= Period.ROT16; i++) {
+					for (int i = Period.ROT1; i >= Period.ROT16; i--) {
 						periods.add(i);
 					}
 				}
