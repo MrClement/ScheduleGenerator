@@ -33,7 +33,7 @@ public class CalendarTester {
 		String[] periodNames = { "Period 1", "Period 2", "Technology Department Meeting", "Period 4", "Period 5",
 				"Period 6", "Middle School Robotics" };
 		// specifies the name of the output file
-		writer.generateCSVFile("test.txt", schoolbool);
+		writer.generateCSVFile("test.csv", schoolbool);
 
 	}
 }

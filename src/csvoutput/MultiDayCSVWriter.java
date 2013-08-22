@@ -88,7 +88,7 @@ public class MultiDayCSVWriter {
 		int dayAdjust = 0;
 		try {
 			writer = new CSVWriter(filename, s);
-			writer.writeHeader();
+			//writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
 				if (c.isAfterOrEqual(earlyLimit) && (c.isBefore(lateLimit) || c.equals(lateLimit)))

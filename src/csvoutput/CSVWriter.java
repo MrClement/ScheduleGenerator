@@ -169,15 +169,29 @@ public class CSVWriter {
 			currentDayMap = isWednesday(today) ? wednesDaysDST : normalDaysDST;
 		}
 		Day dayToPrint = currentDayMap.get(dayType);
-		out.write(dayType + " Day, ");
-		for (Period p : dayToPrint.getD()) {
-			Period periodToPrint = p;
-			out.write(periodName(periodToPrint.getNumber(), today) + " - "
-					+ adjustTime(periodToPrint.getStartTime(), today, -1) + " - "
-					+ adjustTime(periodToPrint.getEndTime(), today, -1) + ", ");
-
-		}
+		//out.write(dayType + " Day, ");
+		for(int roomNumber = 1 ; roomNumber < 9 ; roomNumber++) {
+		out.write(today.toString() + ", " + "0" + ", " + (adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1)-100) + ", " + adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) + ", " + roomNumber + ",," + "FALSE");
 		out.newLine();
+		out.write(today.toString() + ", " + "8"+ ", " + "1530" + ", " + "1630" + ", " + roomNumber + ",," + "FALSE");
+		out.newLine();
+		out.write(today.toString() + ", " + "9" + ", " + "1630" + ", " + "1730" + ", " + roomNumber + ",," + "FALSE");
+		out.newLine();
+		}
+		for (Period p : dayToPrint.getD()) {
+			if(p.getNumber() > 0) {
+			Period periodToPrint = p;
+			for(int roomNumber = 1 ; roomNumber < 9 ; roomNumber++) {
+			out.write(today.toString() + ", " + periodToPrint.getNumber() + ", " + adjustTime(periodToPrint.getStartTime(), today, -1) + ", " + adjustTime(periodToPrint.getEndTime(), today, -1) + ", " + roomNumber + ",," + "FALSE");
+			//out.write(periodName(periodToPrint.getNumber(), today) + " - "
+			//		+ adjustTime(periodToPrint.getStartTime(), today, -1) + " - "
+			//		+ adjustTime(periodToPrint.getEndTime(), today, -1) + ", ");
+			
+			out.newLine();
+			}
+			
+			}
+		}
 		out.close();
 
 	}
