@@ -1,6 +1,10 @@
 package csvoutput;
 
-import generator.*;
+import generator.CurrentDate;
+import generator.Day;
+import generator.DayBuilder;
+import generator.DayBuilder78;
+import generator.Period;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -98,42 +102,43 @@ public class CSVWriter {
 	private String periodName(int periodNumber, CurrentDate today) {
 		String s = "";
 		switch (periodNumber) {
-		case Period.BREAK:
-			s = "Break";
-			break;
-		case Period.ASSEMBLY:
-			s = "Assembly";
-			break;
-		case Period.CLASSMEETING:
-			s = "Class Meeting";
-			break;
-		case Period.ADVISORY:
-			s = "Advisory";
-			break;
-		case Period.CLUBS:
-			s = "Clubs";
-			break;
-		case Period.LUNCH:
-			s = "Lunch";
-			break;
-		case Period.SPORTS:
-			s = "Sports";
-			break;
-		case Period.STUDYHALL:
-			s = "Study Hall";
-			break;
-		case Period.ELECTIVES:
-			s = "Electives";
-			break;
-		case Period.COMMUNITYTIME:
-			s = communityTime(today);
-			break;
+			case Period.BREAK:
+				s = "Break";
+				break;
+			case Period.ASSEMBLY:
+				s = "Assembly";
+				break;
+			case Period.CLASSMEETING:
+				s = "Class Meeting";
+				break;
+			case Period.ADVISORY:
+				s = "Advisory";
+				break;
+			case Period.CLUBS:
+				s = "Clubs";
+				break;
+			case Period.LUNCH:
+				s = "Lunch";
+				break;
+			case Period.SPORTS:
+				s = "Sports";
+				break;
+			case Period.STUDYHALL:
+				s = "Study Hall";
+				break;
+			case Period.ELECTIVES:
+				s = "Electives";
+				break;
+			case Period.COMMUNITYTIME:
+				s = communityTime(today);
+				break;
 			default:
 				s = "Period " + periodNumber;
 				break;
 		}
 		return s;
 	}
+
 	private String communityTime(CurrentDate today) {
 		System.out.println(today.toString() + today.getDayOfTheWeek());
 		switch (today.getDayOfTheWeek()) {
@@ -152,9 +157,6 @@ public class CSVWriter {
 		}
 	}
 
-
-	
-
 	public void writeDayToFile(char dayType, CurrentDate today) throws IOException {
 		try {
 			out = new BufferedWriter(new FileWriter(filename, true));
@@ -167,33 +169,85 @@ public class CSVWriter {
 			currentDayMap = isWednesday(today) ? wednesDays : normalDays;
 		} else {
 			currentDayMap = isWednesday(today) ? wednesDaysDST : normalDaysDST;
+
 		}
+
 		Day dayToPrint = currentDayMap.get(dayType);
-		//out.write(dayType + " Day, ");
-		for(int roomNumber = 1 ; roomNumber < 9 ; roomNumber++) {
-		out.write(today.toString() + ", " + "0" + ", " + (adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1)-100) + ", " + adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) + ", " + roomNumber + ",," + "FALSE");
-		out.newLine();
-		out.write(today.toString() + ", " + "8"+ ", " + "1530" + ", " + "1630" + ", " + roomNumber + ",," + "FALSE");
-		out.newLine();
-		out.write(today.toString() + ", " + "9" + ", " + "1630" + ", " + "1730" + ", " + roomNumber + ",," + "FALSE");
-		out.newLine();
+
+		// Code for dayType
+
+		// out.write(today.toString() + ", " + dayType);
+		// out.newLine();
+
+		// Code for colab tool
+
+		for (int roomNumber = 1; roomNumber < 12; roomNumber++) {
+			out.write(today.toString() + ", " + "0" + ", "
+					+ (adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) - 100) + ", "
+					+ adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) + ", " + roomNumber + ",,"
+					+ "FALSE");
+			out.newLine();
+			out.write(today.toString() + ", " + "8" + ", " + "1530" + ", " + "1630" + ", " + roomNumber + ",,"
+					+ "FALSE");
+			out.newLine();
+			out.write(today.toString() + ", " + "9" + ", " + "1630" + ", " + "1730" + ", " + roomNumber + ",,"
+					+ "FALSE");
+			out.newLine();
 		}
 		for (Period p : dayToPrint.getD()) {
-			if(p.getNumber() > 0) {
-			Period periodToPrint = p;
-			for(int roomNumber = 1 ; roomNumber < 9 ; roomNumber++) {
-			out.write(today.toString() + ", " + periodToPrint.getNumber() + ", " + adjustTime(periodToPrint.getStartTime(), today, -1) + ", " + adjustTime(periodToPrint.getEndTime(), today, -1) + ", " + roomNumber + ",," + "FALSE");
-			//out.write(periodName(periodToPrint.getNumber(), today) + " - "
-			//		+ adjustTime(periodToPrint.getStartTime(), today, -1) + " - "
-			//		+ adjustTime(periodToPrint.getEndTime(), today, -1) + ", ");
-			
-			out.newLine();
+			if (p.getNumber() > 0) {
+				Period periodToPrint = p;
+				for (int roomNumber = 1; roomNumber < 12; roomNumber++) {
+					out.write(today.toString() + ", " + periodToPrint.getNumber() + ", "
+							+ adjustTime(periodToPrint.getStartTime(), today, -1) + ", "
+							+ adjustTime(periodToPrint.getEndTime(), today, -1) + ", " + roomNumber + ",," + "FALSE");
+					// out.write(periodName(periodToPrint.getNumber(), today) +
+					// " - "
+					// + adjustTime(periodToPrint.getStartTime(), today, -1) +
+					// " - "
+					// + adjustTime(periodToPrint.getEndTime(), today, -1) +
+					// ", ");
+
+					out.newLine();
+				}
+
+			} else if (p.getNumber() == Period.LUNCH) {
+				Period periodToPrint = p;
+				for (int roomNumber = 1; roomNumber < 12; roomNumber++) {
+					int start = adjustTime(periodToPrint.getStartTime(), today, -1);
+					int end = adjustTime(periodToPrint.getEndTime(), today, -1);
+					int mid = getMid(start, end);
+					out.write(today.toString() + ", " + 10 + ", " + start + ", " + mid + ", " + roomNumber + ",,"
+							+ "FALSE");
+					out.newLine();
+					out.write(today.toString() + ", " + 11 + ", " + mid + ", " + end + ", " + roomNumber + ",,"
+							+ "FALSE");
+
+					out.newLine();
+				}
 			}
-			
-			}
+
 		}
 		out.close();
+	}
 
+	private int getMid(int start, int end) {
+		int mid;
+		if (end / 100 - start / 100 < 1) {
+			mid = sanitizeTime(start + (end - start) / 2);
+		} else {
+			mid = start + ((((start / 100) * 100 + 60) - start) + (end % 100)) / 2;
+		}
+		mid = sanitizeTime(mid);
+		return mid;
+	}
+
+	private int sanitizeTime(int time) {
+		int timeOver = (time % 100);
+		if (timeOver / 60 >= 1) {
+			return (time / 100) * 100 + 100 + timeOver % 60;
+		} else
+			return time;
 	}
 
 }
