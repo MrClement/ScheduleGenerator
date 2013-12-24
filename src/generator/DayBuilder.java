@@ -90,7 +90,7 @@ public class DayBuilder {
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.CLASSMEETING); // Class
-																				// meeting
+			// meeting
 			today.add(currentPeriod);
 			temp = makeIntTime(temp, 5);
 			currentPeriod = new Period(temp, temp = makeIntTime(temp, 70), (dayType % 65 + 3) % 7 + 1);
