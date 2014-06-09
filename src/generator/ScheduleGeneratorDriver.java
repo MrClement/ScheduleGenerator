@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class ScheduleGeneratorDriver {
 
 	public ScheduleGeneratorDriver() {
-		CurrentDate startDate = new CurrentDate(8, 21, 2013);
-		CurrentDate endDate = new CurrentDate(5, 23, 2014);
+		CurrentDate startDate = new CurrentDate(8, 20, 2014);
+		CurrentDate endDate = new CurrentDate(5, 22, 2015);
 		SchoolType school = SchoolType.HIGH;
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, new CurrentDate(1, 6, 2013),
 				endDate);
@@ -30,8 +30,8 @@ public class ScheduleGeneratorDriver {
 	}
 
 	public ScheduleGeneratorDriver(ScheduleDataStorage data) {
-		CurrentDate startDate = new CurrentDate(8, 21, 2013);
-		CurrentDate endDate = new CurrentDate(5, 23, 2014);
+		CurrentDate startDate = new CurrentDate(8, 20, 2014);
+		CurrentDate endDate = new CurrentDate(5, 22, 2015);
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, data.getStartDate(),
 				data.getEndDate());
 		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.getSchool(),

@@ -24,10 +24,10 @@ public class CSVWriter {
 	private BufferedWriter out;
 	private String filename;
 	private int startYear = 2012;
-	private CurrentDate schoolStartDate = new CurrentDate(10, 15, 2012);
-	private CurrentDate dstStartDate = new CurrentDate(11, 4, 2012);
-	private CurrentDate dstEndDate = new CurrentDate(3, 10, 2013);
-	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 5, 2012);
+	private CurrentDate schoolStartDate = new CurrentDate(8, 20, 2014);
+	private CurrentDate dstStartDate = new CurrentDate(11, 2, 2014);
+	private CurrentDate dstEndDate = new CurrentDate(3, 8, 2015);
+	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 3, 2014);
 
 	public CSVWriter(boolean schoolType) {
 

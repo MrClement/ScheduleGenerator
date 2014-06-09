@@ -26,6 +26,18 @@ import javax.swing.JTextField;
 
 public class PersonalScheduleGenerator {
 
+	// ////// Start and end date config //////////
+	// Make sure to update the excluded files
+	// Also update start date and DST in ICSWriter and CSVWriter
+	private int startMonth = 8;
+	private int startDay = 20;
+	private int startYear = 2014;
+
+	private int endMonth = 5;
+	private int endDay = 22;
+	private int endYear = 2015;
+
+	// ///////////////////////////////////////////
 	private JFrame frame;
 	private final ButtonGroup schoolType = new ButtonGroup();
 	private JTextField txtPeriod1;
@@ -56,7 +68,7 @@ public class PersonalScheduleGenerator {
 	private String[] sixthSimpleOptions = new String[] { "1 & 2", "3 & 4" };
 	private String[] months = new String[12];
 	private String[] days = new String[31];
-	private String[] years = { "2013", "2014" };
+	private String[] years = { "" + startYear, "" + endYear };
 	private JTextField txtMycaltxt;
 
 	private JComboBox<Object> startMonthsList;
@@ -113,7 +125,7 @@ public class PersonalScheduleGenerator {
 		}
 
 		frame = new JFrame();
-		frame.setTitle("Kent Denver Personal Schedule Generator 2013-2014 (BETA)");
+		frame.setTitle("Kent Denver Personal Schedule Generator 2014-2015");
 		frame.setResizable(false);
 		frame.setBounds(50, 50, 500, 710);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -306,12 +318,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblStartDate);
 
 		startMonthsList = new JComboBox<Object>(months);
-		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setSelectedIndex(startMonth - 1);
 		startMonthsList.setBounds(175, 500, 70, 27);
 		frame.getContentPane().add(startMonthsList);
 
 		startDaysList = new JComboBox<Object>(days);
-		startDaysList.setSelectedIndex(20);
+		startDaysList.setSelectedIndex(startDay - 1);
 		startDaysList.setBounds(248, 500, 75, 27);
 		frame.getContentPane().add(startDaysList);
 
@@ -325,12 +337,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblEndDate);
 
 		endMonthsList = new JComboBox<Object>(months);
-		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setSelectedIndex(endMonth - 1);
 		endMonthsList.setBounds(175, 535, 70, 27);
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(22);
+		endDaysList.setSelectedIndex(endDay - 1);
 		endDaysList.setBounds(248, 535, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
@@ -534,12 +546,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblStartDate);
 
 		startMonthsList = new JComboBox<Object>(months);
-		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setSelectedIndex(startMonth - 1);
 		startMonthsList.setBounds(159, 491, 70, 27);
 		frame.getContentPane().add(startMonthsList);
 
 		startDaysList = new JComboBox<Object>(days);
-		startDaysList.setSelectedIndex(20);
+		startDaysList.setSelectedIndex(startDay - 1);
 		startDaysList.setBounds(232, 491, 75, 27);
 		frame.getContentPane().add(startDaysList);
 
@@ -553,12 +565,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblEndDate);
 
 		endMonthsList = new JComboBox<Object>(months);
-		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setSelectedIndex(endMonth - 1);
 		endMonthsList.setBounds(159, 526, 70, 27);
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(22);
+		endDaysList.setSelectedIndex(endDay - 1);
 		endDaysList.setBounds(232, 526, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
@@ -670,12 +682,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblStartDate);
 
 		startMonthsList = new JComboBox<Object>(months);
-		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setSelectedIndex(startMonth - 1);
 		startMonthsList.setBounds(162, 221, 70, 27);
 		frame.getContentPane().add(startMonthsList);
 
 		startDaysList = new JComboBox<Object>(days);
-		startDaysList.setSelectedIndex(20);
+		startDaysList.setSelectedIndex(startDay - 1);
 		startDaysList.setBounds(235, 221, 75, 27);
 		frame.getContentPane().add(startDaysList);
 
@@ -689,12 +701,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblEndDate);
 
 		endMonthsList = new JComboBox<Object>(months);
-		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setSelectedIndex(endMonth - 1);
 		endMonthsList.setBounds(162, 334, 70, 27);
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(22);
+		endDaysList.setSelectedIndex(endDay - 1);
 		endDaysList.setBounds(235, 334, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
@@ -796,12 +808,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblStartDate);
 
 		startMonthsList = new JComboBox<Object>(months);
-		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setSelectedIndex(startMonth - 1);
 		startMonthsList.setBounds(175, 468, 70, 27);
 		frame.getContentPane().add(startMonthsList);
 
 		startDaysList = new JComboBox<Object>(days);
-		startDaysList.setSelectedIndex(20);
+		startDaysList.setSelectedIndex(startDay - 1);
 		startDaysList.setBounds(248, 468, 75, 27);
 		frame.getContentPane().add(startDaysList);
 
@@ -815,12 +827,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblEndDate);
 
 		endMonthsList = new JComboBox<Object>(months);
-		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setSelectedIndex(endMonth - 1);
 		endMonthsList.setBounds(175, 503, 70, 27);
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(22);
+		endDaysList.setSelectedIndex(endDay - 1);
 		endDaysList.setBounds(248, 503, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
@@ -936,12 +948,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblStartDate);
 
 		startMonthsList = new JComboBox<Object>(months);
-		startMonthsList.setSelectedIndex(7);
+		startMonthsList.setSelectedIndex(startMonth - 1);
 		startMonthsList.setBounds(159, 422, 70, 27);
 		frame.getContentPane().add(startMonthsList);
 
 		startDaysList = new JComboBox<Object>(days);
-		startDaysList.setSelectedIndex(20);
+		startDaysList.setSelectedIndex(startDay - 1);
 		startDaysList.setBounds(232, 422, 75, 27);
 		frame.getContentPane().add(startDaysList);
 
@@ -955,12 +967,12 @@ public class PersonalScheduleGenerator {
 		frame.getContentPane().add(lblEndDate);
 
 		endMonthsList = new JComboBox<Object>(months);
-		endMonthsList.setSelectedIndex(4);
+		endMonthsList.setSelectedIndex(endMonth - 1);
 		endMonthsList.setBounds(159, 475, 70, 27);
 		frame.getContentPane().add(endMonthsList);
 
 		endDaysList = new JComboBox<Object>(days);
-		endDaysList.setSelectedIndex(22);
+		endDaysList.setSelectedIndex(endDay - 1);
 		endDaysList.setBounds(232, 475, 75, 27);
 		frame.getContentPane().add(endDaysList);
 
