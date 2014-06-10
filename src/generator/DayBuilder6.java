@@ -143,18 +143,15 @@ public class DayBuilder6 extends DayBuilder {
 		// E Day
 		dayType = 'E';
 		today = new Day();
-		currentPeriod = new Period(start, temp = makeIntTime(start, 5), Period.HOMEROOM);
+		currentPeriod = new Period(start, temp = makeIntTime(start, 10), Period.HOMEROOM);
 		today.add(currentPeriod);
 		today.setDayType(dayType);
+		temp = makeIntTime(temp, 5);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 55), Period.ROT11);
 		today.add(currentPeriod);
+		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ASSEMBLY);
+		today.add(currentPeriod);
 		temp = makeIntTime(temp, 5);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 30), Period.HOMEROOM);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 30), Period.ASSEMBLY);
-		today.add(currentPeriod);
-		currentPeriod = new Period(temp, temp = makeIntTime(temp, 15), Period.BREAK);
-		today.add(currentPeriod);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 60), Period.ROT12);
 		today.add(currentPeriod);
 		currentPeriod = new Period(temp, temp = makeIntTime(temp, 40), Period.LUNCH);
