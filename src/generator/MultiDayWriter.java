@@ -120,4 +120,9 @@ public class MultiDayWriter {
 		temp.setYear(Integer.parseInt(brokenLine[2]));
 		daysOff.offer(temp);
 	}
+
+	public PriorityQueue<CurrentDate> getDaysOn() {
+		return daysOn;
+	}
+
 }

@@ -1,11 +1,7 @@
 package csvoutput;
 
 import generator.CurrentDate;
-import generator.MultiDayWriter;
-import generator.ScheduleGeneratorDriver;
-import generator.SchoolType;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 public class CalendarTester {
@@ -15,8 +11,8 @@ public class CalendarTester {
 	 */
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		CurrentDate startDate = new CurrentDate(8, 21, 2013);
-		CurrentDate endDate = new CurrentDate(5, 23, 2014);
+		CurrentDate startDate = new CurrentDate(8, 20, 2014);
+		CurrentDate endDate = new CurrentDate(5, 22, 2015);
 		boolean schoolbool = true;
 		MultiDayCSVWriter writer = new MultiDayCSVWriter("excluded.txt", startDate, endDate, startDate, endDate);
 		// sets whether to put breaks, student life, and lunch on the calendar
