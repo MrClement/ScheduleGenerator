@@ -182,16 +182,17 @@ public class CSVWriter {
 		// Code for colab tool
 
 		for (int roomNumber = 1; roomNumber < 12; roomNumber++) {
+			System.out.println(dayType);
 			out.write(today.toString() + ", " + "0" + ", "
 					+ (adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) - 100) + ", "
-					+ adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) + ", " + roomNumber + ",,"
-					+ "FALSE");
+					+ adjustTime(dayToPrint.getD().peek().getStartTime(), today, -1) + ", " + roomNumber + ","
+					+ dayType + "," + "FALSE");
 			out.newLine();
-			out.write(today.toString() + ", " + "8" + ", " + "1530" + ", " + "1630" + ", " + roomNumber + ",,"
-					+ "FALSE");
+			out.write(today.toString() + ", " + "8" + ", " + "1530" + ", " + "1630" + ", " + roomNumber + "," + dayType
+					+ "," + "FALSE");
 			out.newLine();
-			out.write(today.toString() + ", " + "9" + ", " + "1630" + ", " + "1730" + ", " + roomNumber + ",,"
-					+ "FALSE");
+			out.write(today.toString() + ", " + "9" + ", " + "1630" + ", " + "1730" + ", " + roomNumber + "," + dayType
+					+ "," + "FALSE");
 			out.newLine();
 		}
 		for (Period p : dayToPrint.getD()) {
@@ -200,7 +201,8 @@ public class CSVWriter {
 				for (int roomNumber = 1; roomNumber < 12; roomNumber++) {
 					out.write(today.toString() + ", " + periodToPrint.getNumber() + ", "
 							+ adjustTime(periodToPrint.getStartTime(), today, -1) + ", "
-							+ adjustTime(periodToPrint.getEndTime(), today, -1) + ", " + roomNumber + ",," + "FALSE");
+							+ adjustTime(periodToPrint.getEndTime(), today, -1) + ", " + roomNumber + "," + dayType
+							+ "," + "FALSE");
 					// out.write(periodName(periodToPrint.getNumber(), today) +
 					// " - "
 					// + adjustTime(periodToPrint.getStartTime(), today, -1) +
@@ -217,11 +219,11 @@ public class CSVWriter {
 					int start = adjustTime(periodToPrint.getStartTime(), today, -1);
 					int end = adjustTime(periodToPrint.getEndTime(), today, -1);
 					int mid = getMid(start, end);
-					out.write(today.toString() + ", " + 10 + ", " + start + ", " + mid + ", " + roomNumber + ",,"
-							+ "FALSE");
+					out.write(today.toString() + ", " + 10 + ", " + start + ", " + mid + ", " + roomNumber + ","
+							+ dayType + "," + "FALSE");
 					out.newLine();
-					out.write(today.toString() + ", " + 11 + ", " + mid + ", " + end + ", " + roomNumber + ",,"
-							+ "FALSE");
+					out.write(today.toString() + ", " + 11 + ", " + mid + ", " + end + ", " + roomNumber + ","
+							+ dayType + "," + "FALSE");
 
 					out.newLine();
 				}
