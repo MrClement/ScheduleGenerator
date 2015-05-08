@@ -23,11 +23,11 @@ public class CSVWriter {
 	private HashMap<Character, Day> wednesDaysDST;
 	private BufferedWriter out;
 	private String filename;
-	private int startYear = 2012;
-	private CurrentDate schoolStartDate = new CurrentDate(8, 20, 2014);
-	private CurrentDate dstStartDate = new CurrentDate(11, 2, 2014);
-	private CurrentDate dstEndDate = new CurrentDate(3, 8, 2015);
-	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 3, 2014);
+	private int startYear = 2015;
+	private CurrentDate schoolStartDate = new CurrentDate(8, 26, 2015);
+	private CurrentDate dstStartDate = new CurrentDate(11, 1, 2015);
+	private CurrentDate dstEndDate = new CurrentDate(3, 13, 2016);
+	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 2, 2015);
 
 	public CSVWriter(boolean schoolType) {
 

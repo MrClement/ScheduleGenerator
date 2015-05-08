@@ -30,8 +30,8 @@ public class ScheduleGeneratorDriver {
 	}
 
 	public ScheduleGeneratorDriver(ScheduleDataStorage data) {
-		CurrentDate startDate = new CurrentDate(8, 20, 2014);
-		CurrentDate endDate = new CurrentDate(5, 22, 2015);
+		CurrentDate startDate = new CurrentDate(8, 26, 2015);
+		CurrentDate endDate = new CurrentDate(5, 27, 2016);
 		MultiDayWriter writer = new MultiDayWriter("excluded.txt", startDate, endDate, data.getStartDate(),
 				data.getEndDate());
 		writer.generateICSFile(data.getFilename(), data.getPeriodsToInclude(), data.getPeriodNames(), data.getSchool(),

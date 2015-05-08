@@ -30,12 +30,20 @@ public class PersonalScheduleGenerator {
 	// Make sure to update the excluded files
 	// Also update start date and DST in ICSWriter and CSVWriter
 	private int startMonth = 8;
-	private int startDay = 20;
-	private int startYear = 2014;
+	private int startDay = 26;
+	private int startYear = 2015;
 
 	private int endMonth = 5;
-	private int endDay = 22;
-	private int endYear = 2015;
+	private int endDay = 27;
+	private int endYear = 2016;
+
+	private int dstStartMonth = 11;
+	private int dstStartDay = 1;
+	private int dstStartYear = 2015;
+
+	private int dstEndMonth = 3;
+	private int dstEndDay = 13;
+	private int dstEndYear = 2016;
 
 	// ///////////////////////////////////////////
 	private JFrame frame;
@@ -125,7 +133,7 @@ public class PersonalScheduleGenerator {
 		}
 
 		frame = new JFrame();
-		frame.setTitle("Kent Denver Personal Schedule Generator 2014-2015");
+		frame.setTitle("Kent Denver Personal Schedule Generator 2015-2016");
 		frame.setResizable(false);
 		frame.setBounds(50, 50, 500, 710);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
