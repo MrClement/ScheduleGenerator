@@ -1,6 +1,7 @@
 package gui;
 
 import generator.CurrentDate;
+import generator.Dates;
 import generator.Period;
 import generator.ScheduleDataStorage;
 import generator.ScheduleGeneratorDriver;
@@ -29,21 +30,21 @@ public class PersonalScheduleGenerator {
 	// ////// Start and end date config //////////
 	// Make sure to update the excluded files
 	// Also update start date and DST in ICSWriter and CSVWriter
-	private int startMonth = 8;
-	private int startDay = 26;
-	private int startYear = 2015;
+	private int startMonth = Dates.SCHOOL_START_MONTH;
+	private int startDay = Dates.SCHOOL_START_DAY;
+	private int startYear = Dates.SCHOOL_START_YEAR;
 
-	private int endMonth = 5;
-	private int endDay = 27;
-	private int endYear = 2016;
+	private int endMonth = Dates.SCHOOL_END_MONTH;
+	private int endDay = Dates.SCHOOL_END_DAY;
+	private int endYear = Dates.SCHOOL_END_YEAR;
 
-	private int dstStartMonth = 11;
-	private int dstStartDay = 1;
-	private int dstStartYear = 2015;
+	private int dstStartMonth = Dates.DST_START_MONTH;
+	private int dstStartDay = Dates.DST_START_DAY;
+	private int dstStartYear = Dates.DST_START_YEAR;
 
-	private int dstEndMonth = 3;
-	private int dstEndDay = 13;
-	private int dstEndYear = 2016;
+	private int dstEndMonth = Dates.DST_END_MONTH;
+	private int dstEndDay = Dates.DST_END_DAY;
+	private int dstEndYear = Dates.DST_END_YEAR;
 
 	// ///////////////////////////////////////////
 	private JFrame frame;
@@ -133,7 +134,7 @@ public class PersonalScheduleGenerator {
 		}
 
 		frame = new JFrame();
-		frame.setTitle("Kent Denver Personal Schedule Generator 2015-2016");
+		frame.setTitle("Kent Denver Personal Schedule Generator " + Dates.START_YEAR + "-" + (Dates.START_YEAR + 1));
 		frame.setResizable(false);
 		frame.setBounds(50, 50, 500, 710);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,6 +1,7 @@
 package csvoutput;
 
 import generator.CurrentDate;
+import generator.Dates;
 import generator.Day;
 import generator.DayBuilder;
 import generator.DayBuilder78;
@@ -23,11 +24,13 @@ public class CSVWriter {
 	private HashMap<Character, Day> wednesDaysDST;
 	private BufferedWriter out;
 	private String filename;
-	private int startYear = 2015;
-	private CurrentDate schoolStartDate = new CurrentDate(8, 26, 2015);
-	private CurrentDate dstStartDate = new CurrentDate(11, 1, 2015);
-	private CurrentDate dstEndDate = new CurrentDate(3, 13, 2016);
-	private CurrentDate dayAfterDSTStartDate = new CurrentDate(11, 2, 2015);
+	private int startYear = Dates.START_YEAR;
+	private CurrentDate schoolStartDate = new CurrentDate(Dates.SCHOOL_START_MONTH, Dates.SCHOOL_START_DAY,
+			Dates.SCHOOL_START_YEAR);
+	private CurrentDate dstStartDate = new CurrentDate(Dates.DST_START_MONTH, Dates.DST_START_DAY, Dates.DST_START_YEAR);
+	private CurrentDate dstEndDate = new CurrentDate(Dates.DST_END_MONTH, Dates.DST_END_DAY, Dates.DST_END_YEAR);
+	private CurrentDate dayAfterDSTStartDate = new CurrentDate(Dates.DST_START_MONTH, Dates.DST_START_DAY + 1,
+			Dates.DST_START_YEAR);
 
 	public CSVWriter(boolean schoolType) {
 
