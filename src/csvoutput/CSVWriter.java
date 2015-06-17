@@ -6,6 +6,7 @@ import generator.Day;
 import generator.DayBuilder;
 import generator.DayBuilder78;
 import generator.Period;
+import generator.SchoolType;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.PriorityQueue;
 
 public class CSVWriter {
 
@@ -22,6 +24,9 @@ public class CSVWriter {
 	private HashMap<Character, Day> wednesDays;
 	private HashMap<Character, Day> normalDaysDST;
 	private HashMap<Character, Day> wednesDaysDST;
+	private PriorityQueue<CurrentDate> excludedElectives;
+	private PriorityQueue<CurrentDate> excludedSevenEight;
+	private PriorityQueue<CurrentDate> excludedSixth;
 	private BufferedWriter out;
 	private String filename;
 	private int startYear = Dates.START_YEAR;
@@ -31,6 +36,7 @@ public class CSVWriter {
 	private CurrentDate dstEndDate = new CurrentDate(Dates.DST_END_MONTH, Dates.DST_END_DAY, Dates.DST_END_YEAR);
 	private CurrentDate dayAfterDSTStartDate = new CurrentDate(Dates.DST_START_MONTH, Dates.DST_START_DAY + 1,
 			Dates.DST_START_YEAR);
+	private SchoolType school;
 
 	public CSVWriter(boolean schoolType) {
 
