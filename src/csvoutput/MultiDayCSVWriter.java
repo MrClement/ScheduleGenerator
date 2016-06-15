@@ -1,9 +1,9 @@
 package csvoutput;
 
+import generator.CurrentDate;
+
 import java.io.IOException;
-import generator.*;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -88,7 +88,7 @@ public class MultiDayCSVWriter {
 		int dayAdjust = 0;
 		try {
 			writer = new CSVWriter(filename, s);
-			//writer.writeHeader();
+			writer.writeHeader();
 			for (CurrentDate c : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
 				if (c.isAfterOrEqual(earlyLimit) && (c.isBefore(lateLimit) || c.equals(lateLimit)))

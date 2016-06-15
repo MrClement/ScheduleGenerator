@@ -19,12 +19,11 @@ public class CalendarTester {
 		CurrentDate earlyLimit = startDate;
 		CurrentDate lateLimit = endDate;
 
-		MultiDayCSVPeriodWriter writer = new MultiDayCSVPeriodWriter("excluded.txt", startDate, endDate, earlyLimit,
-				lateLimit);
+		MultiDayCSVWriter writer = new MultiDayCSVWriter("excluded.txt", startDate, endDate, earlyLimit, lateLimit);
 
 		SchoolType s = SchoolType.HIGH;
 		// sets whether to put breaks, student life, and lunch on the calendar
-		boolean includeBreaksAndLunch = false;
+		boolean includeBreaksAndLunch = true;
 		// If this has entries it will only generate specific period on specific
 		// days
 		HashMap<Character, Integer> singleBox = new HashMap<Character, Integer>();
@@ -32,17 +31,15 @@ public class CalendarTester {
 		// singleBox.put('E', 7);
 		// Specifies which periods will show up at all (if a period appear in
 		// singleBox but not here, it will not be on the schedule
-		int[] periodsToInclude = { 1 };
+		int[] periodsToInclude = { 1, 2, 3, 4, 5, 6, 7 };
 		// Specifies the names of all the periods
-		String[] periodNames = { "BEE", "Period 2", "Technology Department Meeting", "Period 4", "Period 5",
-				"Period 6", "Middle School Robotics" };
+		String[] periodNames = { "Period 1", "Period 2", "Period 3", "Period 4", "Period 5", "Period 6", "Period 7" };
 
 		boolean midSchoolElective = false;
 		boolean sixth = false;
 		int[] sixthPrefs = {};
 
-		writer.generateCSVFile("test.csv", periodsToInclude, periodNames, s, singleBox, includeBreaksAndLunch,
-				midSchoolElective, sixth, sixthPrefs);
+		writer.generateCSVFile("/Users/aclement/Desktop/AllPeriods.csv", true);
 
 	}
 }
