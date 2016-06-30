@@ -9,12 +9,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.PriorityQueue;
 
-public class CSVLetterHelper {
+class CSVLetterHelper {
 
 	private MultiDayWriter writer;
 	private BufferedWriter out;
 
-	public CSVLetterHelper(String daysOffFile, CurrentDate startDate, CurrentDate endDate, CurrentDate earlyLimit,
+    CSVLetterHelper(String daysOffFile, CurrentDate startDate, CurrentDate endDate, CurrentDate earlyLimit,
 			CurrentDate lateLimit, String filename) {
 		writer = new MultiDayWriter(daysOffFile, startDate, endDate, earlyLimit, lateLimit);
 		PriorityQueue<CurrentDate> daysOn = writer.getDaysOn();
@@ -28,9 +28,12 @@ public class CSVLetterHelper {
 			int dayAdjust = 0;
 			for (CurrentDate currentDate : daysOn) {
 				char currentDayType = (char) (dayType + dayAdjust);
-				out.write(currentDate + ",  " + currentDayType);
+				if(currentDayType == 'B' || currentDayType == 'F') {
+					out.write(currentDate + ",  " + currentDayType);
+					out.newLine();
+				}
 				dayAdjust = (dayAdjust + 1) % 7;
-				out.newLine();
+
 			}
 			out.close();
 		} catch (IOException e) {
