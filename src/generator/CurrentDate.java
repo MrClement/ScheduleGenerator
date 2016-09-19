@@ -1,6 +1,7 @@
 package generator;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class CurrentDate implements Comparable<CurrentDate> {
 
@@ -48,6 +49,11 @@ public class CurrentDate implements Comparable<CurrentDate> {
 	public boolean equals(CurrentDate c) {
 		return (c.getYear() == year && c.getMonth() == month && c.getDay() == day);
 
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(year, month, day);
 	}
 
 	public String toString() {
